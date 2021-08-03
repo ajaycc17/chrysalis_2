@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+{% block title %}About Me{% endblock title %} 
+{% block aboutactive %} active {% endblock aboutactive %}
+{% block place %}About{% endblock place %}
+{% block metaDesc %}Hi! I am Ajay Choudhury. I regularly add content out of my knowledge and experience on this blog. Here is a quick introduction about me and my fields of interest.{% endblock metaDesc %}
+{% block body %}
+
+<!-- header -->
+
+<section class="py-3 text-center container-fluid bg-blog">
+    <div class="py-lg-5 py-3 mx-2">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fs-2">About Me</h1>
+            <p class="textCol fw-500 px-3">
+                <span class="mainText">Hi! I am Ajay Choudhury.</span> I regularly add content out of my knowledge and experience on this blog. Here is a quick introduction about me and my fields of interest.
+            </p>
+            <p class="mb-0">
+                <a href="/resume" class="my-2 me-2">
+                    <button type="button" class="my-2 btn btn-sm btn-success rounded-pill fw-500 px-3"><i class="bi bi-check-circle-fill pe-1"></i> Resume</button>
+                </a>
+                <a href="/projects" class="my-2">
+                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-pill fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Projects</button>
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- content section -->
+
+<div class="container-fluid py-5">
+    <main class="container container-page">
+        <p>
+            We will be sharing our whole story later on, about how we started with this site, what are our goals, how we are moving towards our goals, what we do, how we manage everything and much more about us here. So if you like our content and our way of presenting it you can follow me on <a href="https://twitter.com/ajaycc17" target="_blank" rel="noopener noreferrer">Twitter</a> and <a href="https://twitter.com/ajaycc17" target="_blank" rel="noopener noreferrer">Instagram</a>. You can bookmark OrbitGadget for more fresh contents from us.
+        </p>
+    </main>
+</div>
+{% endblock body %}

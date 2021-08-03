@@ -1,0 +1,77 @@
+{% extends 'base.html' %} 
+{% block title %}Contact{% endblock title %} 
+{% block contactactive %} active {% endblock contactactive %}
+{% block place %}Contact{% endblock place %}
+{% block metaDesc %}Contact us for queries regarding privacy policy, site terms, content issues, advertising, feedback or any other genuine concern. We are happy to help.{% endblock metaDesc %}
+{% block body %} 
+
+<!-- header -->
+
+<section class="py-3 text-center container-fluid bg-blog">
+    <div class="py-lg-5 py-3 mx-2">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fs-2">Contact</h1>
+            <p class="textCol fw-500 px-3">
+                Contact us for queries regarding privacy policy, site terms, content issues, advertising, feedback or any other genuine concern. We are happy to help.
+            </p>
+            <p class="mb-0">
+                <a href="/site-terms" class="my-2 me-2">
+                    <button type="button" class="my-2 btn btn-sm btn-success rounded-pill fw-500 px-3"><i class="bi bi-check-circle-fill pe-1"></i> Site-Terms</button>
+                </a>
+                <a href="/blog" class="my-2">
+                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-pill fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Browse Blog</button>
+                </a>
+            </p>
+        </div>
+    </div>
+</section>  
+
+<div class="container-fluid py-5">
+    <!-- content section -->
+    
+    <main class="container container-page">
+        <p>
+            Feel free to contact us at OrbitGadget using the form below for any general query regarding the site, to report technical problems, and inquires related to promotion or collaboration. We respond to valid queries in an elaborate manner. We are happy to get connected to you.
+        </p>
+        <p>
+            If you have any suggestions, questions, or feedback regarding this site, please sum it up and contact us using the form below. We value all of our readers and their suggestions. We will try to get back to you within a day.
+        </p>
+        <form method="post" action="/contact/" class="mb-3">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="bg-transparent subtleBorder text-white form-control" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email ID</label>
+                <input type="email" class="bg-transparent subtleBorder text-white form-control" id="email" name="email" placeholder="name@example.com" required>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Your Phone</label>
+                <input type="tel" class="bg-transparent subtleBorder text-white form-control" id="phone" name="phone" placeholder="+91 9876543210" required>
+                <div id="phoneHelp" class="form-text">We'll never share your phone number with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea class="bg-transparent subtleBorder text-white form-control" id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+                <div id="messageHelp" class="form-text">Please try to be clear, precise and meaningful.</div>
+            </div>
+            <div class="mb-3">
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="6LeleRAaAAAAABpJWwhp8Gjk0q0YulKoppddRjug"></div>
+            </div>
+            <button type="submit" class="btn btn-sm btn-success rounded-pill fw-500 px-3 py-2">Submit →</button>
+        </form>
+        <p>
+            Please try to be as detailed as possible in your email if you are asking a question or reporting a problem, such that we can reply to you with an appropriate and meaningful answer to your questions.
+        </p>
+        <p>
+            Please be patient after sending an email to us, we always reply to emails, but it may take some time to get back to you (at most 24 hrs.). Kindly wait for our reply before sending another email. If you want to know more about this site’s working principles head to <a href="/privacy-policy">Privacy Policy</a> and <a href="/site-terms">Site-terms</a>.
+        </p>
+        <p>
+            We really appreciate your support for OrbitGadget and we urge you to continue exploring OrbitGadget and consider subscribing to our notifications to stay updated.
+        </p>
+    </main>
+</div>
+{% endblock body %}

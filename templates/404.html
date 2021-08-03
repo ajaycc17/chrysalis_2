@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block title %}404: Not Found{% endblock title %}
+{% load static %}
+{% block body %}
+<main class="container-fluid py-4">
+    <div class="container">
+        <h1 class="fs-2 text-center">
+            404! PAGE NOT FOUND
+        </h1>
+        <p class="text-center pb-4 boldText">We could not find anything related to your search query...</p>
+        <img style="max-width:800px;" class="mx-auto d-block pb-4" src="{% static 'images/Not found.png' %}" alt="No Results Found" width="100%">
+        <h4 class="text-center mainText fs-5 mt-4">... SUGGESTIONS ...</h4>
+        <p class="text-center boldText">Try to spell correctly • Try different keywords • Try general keywords</p>
+
+        <div class="mt-4 mb-4 d-flex justify-content-center">
+            <a href="/"><button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3 py-2 me-3"><i class="bi bi-grid-fill pe-1"></i> Back to Home</button></a>
+            <a href="/blog"><button type="button" class="btn btn-sm btn-warning rounded-pill fw-500 px-3 py-2"><i class="bi bi-hdd-rack-fill pe-1"></i> Explore Blog</button></a>
+        </div>
+    </div>
+</main>
+{% endblock body %}

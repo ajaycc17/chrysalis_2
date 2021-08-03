@@ -1,0 +1,215 @@
+{% extends 'base.html' %} 
+{% block title %}{{post.title}}{% endblock title %} 
+{% block blogactive %} active {% endblock blogactive %}
+{% block place %}Article{% endblock place %}
+{% block metaDesc %}{{post.content|truncatechars:150}}{% endblock metaDesc %}
+{% load static %}
+{% block body %}
+<div class="container py-4">
+  <div class="row g-4">
+
+    <!-- post content section -->
+
+    <main class="col-md-8 mainPost">
+
+      <!-- header -->
+
+      <nav style="--bs-breadcrumb-divider: '•';" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2">
+          <li class="breadcrumb-item fw-500"><a href="/">Home</a></li>
+          <li class="breadcrumb-item fw-500"><a href="/blog">Blog</a></li>
+          <li class="breadcrumb-item fw-500"><a href="/blog/{{post.category}}">{{post.category|capfirst}}</a></li>
+        </ol>
+      </nav>
+
+      <h1 class="fs-2">{{post.title}}</h1>
+
+      <div class="mb-3">
+        <small class="me-2 fw-500 text-warning"><i class="bi bi-person-circle pe-1"></i> <span class="border-bottom border-2 border-info">{{post.author}}</span></small>
+        <small class="mx-2 fw-500 text-warning"><i class="bi bi-clock-history pe-1"></i> {{post.timeStamp|date:"d M, Y"}}</small>
+        <small class="text-warning mx-2 fw-500"><i class="bi bi-hourglass-bottom pe-1"></i>{{readTime}} mins</small>
+      </div>
+      <div class="mb-3">
+        <img src="{{post.thumbnail.url}}" alt="{{post.title}}" style="width: -webkit-fill-available">
+      </div>
+
+      <!-- end of header -->
+
+      <article class="pt-2 og-content">
+        {{post.content|safe}}
+      </article>
+
+      <!-- author section -->
+
+      <section class="py-4 authSec" style="border-top: dashed 2px #4c6d8f;border-bottom: dashed 2px #4c6d8f;">
+        <div class="bg-card mainText py-4 px-2 row gx-4 d-flex mx-0">
+          <div class="authImg col-md-2 d-flex align-items-center justify-content-between">
+            <div>
+              <img class="rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" alt="{{post.author}}" width="100px">
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div>
+              <div class="authTitle pb-3 d-flex justify-content-between align-items-center">
+                <h4 class="fs-5 mb-0">{{post.author}}</h4>
+                <span>
+                  <a class="authSocial ps-0" href="https://twitter.com/ajaycc17"><i class="bi bi-twitter"></i></a>
+                  <a class="authSocial" href="https://linkedin.com/in/ajaycc17"><i class="bi bi-linkedin"></i></a>
+                  <a class="authSocial" href="https://github.com/ajaycc17"><i class="bi bi-github"></i></a>
+                </span> 
+              </div>
+              <p class="authBio mb-0">Ajay Choudhury is the co-founder of OrbitGadget. He is a tech geek and a constant learner with a burning passion for technology. He loves sharing his know-how with others through his projects and blog. When not coding or writing content he loves playing football or enjoying music.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- comments section -->
+
+      <section class="comments pt-4">
+        <div class="d-flex align-items-center justify-content-between pb-1" style="border-bottom: dashed 2px #4c6d8f;">
+          <h3 class="fs-4 mb-0"><i class="textCol bi bi-chat-dots-fill"></i> {{comments.count}} Comments</h3>
+          <a href="/site-terms">
+            <div class="d-flex align-items-center textCol">
+              <i class="bi bi-exclamation-circle-fill fw-500 pe-1"></i>
+              <span class="fw-500">Info</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="my-3">
+          {% if user.is_authenticated %}
+          <form action="/blog/postComment/" method="post">
+            {% csrf_token %}
+            <div class="mt-4 mb-2">
+              <textarea class="form-control bg-transparent subtleBorder text-white" name="comment" id="comment" rows="5" aria-describedby="commentHelp" placeholder="Your comment here."></textarea>
+              <div id="commentHelp" class="form-text textCol">Please try to be clear, meaningful and precise in the comment. </div>
+            </div>
+            <input type="hidden" name="postSno" value="{{post.sno}}">
+            <input type="hidden" name="parentSno" value="">
+            <button type="submit" class="btn btn-sm px-3 rounded-pill fw-500 btn-success">Submit →</button>
+          </form>
+
+          {% else %}
+          <div class="alert bg-card text-center" role="alert">
+            Please <a href="#" class="alert-link text-warning" data-bs-toggle="modal" data-bs-target="#loginmodal">LOG IN</a> to continue the discussion...
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- comments display -->
+
+        {% for comment in comments %}
+
+        <div class="py-2 ps-2 my-4 commentParent">
+
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              {% ifequal comment.user.username "ajaycc17" %}
+                <img src="{% static 'images/Ajay Choudhury.jpg' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
+              {% else %}
+                <img src="{% static 'images/User.png' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
+                {% endifequal %}
+                <small><b class="textCol">{{comment.user.username|capfirst}}</b></small>&nbsp; • &nbsp;<small class="fw-500 textCol">{{comment.timeStamp|date:"d M, Y"}}</small>
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="cursorPoint me-3 d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+              <i class="bi bi-reply-fill fs-5 pe-1"></i> <span class="fw-500">Reply</span>
+            </div>
+            {% else %}
+            <div class="cursorPoint2 me-3 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#loginmodal">
+              <i class="bi bi-exclamation-circle-fill pe-1"></i><span class="fw-500">Log in</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex align-items-center pt-2">
+            <p class="mb-0 mainText">{{comment.comment|capfirst}}</p>
+          </div>
+
+          {% if user.is_authenticated %}
+          <div class="collapse" id="replyBox{{comment.sno}}">
+            <div class="card bg-back card-body my-2">
+              <form action="/blog/postComment/" method="post">
+              {% csrf_token %}
+                <div class="mb-3">
+                  <textarea class="form-control bg-transparent subtleBorder text-white" name="comment" rows="3" placeholder="Your reply here."></textarea>
+                  <input type="hidden" name="parentSno" value="{{comment.sno}}">
+                </div>
+                <input type="hidden" name="postSno" value="{{post.sno}}">
+                <button type="submit" class="btn btn-sm px-3 rounded-pill fw-500 btn-success">Submit →</button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Replies -->
+
+          <div class="replies">
+            {% load extras %}
+            {% for reply in repDict|get_val:comment.sno %}
+            <div class="py-2 ps-2 mt-3 ms-2 replyChild">
+              <div class="d-flex align-items-center">
+              {% ifequal reply.user.username "ajaycc17" %}
+                <img src="{% static 'images/Ajay Choudhury.jpg' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
+              {% else %}
+                <img src="{% static 'images/User.png' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
+              {% endifequal %}
+                <small><b class="textCol">{{reply.user.username|capfirst}}</b></small>&nbsp; • &nbsp;<small class="fw-500 textCol">{{comment.timeStamp|date:"d M, Y"}}</small>
+              </div>
+    
+              <div class="d-flex align-items-center pt-2">
+                <p class="mb-0 mainText">{{reply.comment|capfirst}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+    </main>
+
+    <!-- sidebar -->
+
+    <aside class="col-md-4 sideBar ps-3 mb-3">
+      <div class="position-sticky" style="top: 1rem;">
+
+        <!-- share icons -->
+
+        <div class="mb-4 px-3">
+          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">Share Now On: </h3>
+          <div class="d-flex justify-content-between align-items-center pt-3">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><i class="bi bi-facebook fs-3 textCol"></i></a>
+
+            <a href="https://twitter.com/intent/tweet?url=https://orbitgadget.com/blog/{{post.slug}}&text=" target="_blank"><i class="bi bi-twitter fs-3 textCol"></i></a>
+
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><i class="bi bi-linkedin fs-3 textCol"></i></a>
+
+            <a href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp fs-3 textCol"></i></a>
+
+            <a href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><i class="bi bi-telegram fs-3 textCol"></i></a>
+          </div>
+        </div>
+
+        <!-- recommended post -->
+        <div class="mb-4 px-3 bg-card py-4">
+          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">Recommended: </h3>
+          <div class="mt-3">
+            {% for recommend in recommended %}
+            <a class="d-flex align-items-center py-2 pt-3" href="/blog/{{recommend.slug}}">
+              <i class="bi bi-arrow-up-right-circle-fill pe-3 fs-5 text-warning"></i>
+              <div>
+                <p class="mb-0 fw-500 mainText">{{recommend.title}}</p>
+                <small class="textCol">{{recommend.timeStamp|date:"M, Y"}} &middot; {{recommend.category|capfirst}}</small>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% endblock body %}

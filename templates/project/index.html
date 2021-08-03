@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% block title %}Projects{% endblock title %} 
+{% block place %}Projects{% endblock place %}
+{% block metaDesc %}We love to cover various programming and development projects under the projects section.{% endblock metaDesc %}
+{% load static %}
+{% block body %}
+
+<section class="py-3 text-center container-fluid bg-blog">
+    <div class="py-lg-5 py-3 mx-2">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fs-2">Awesome Projects Coming Soon</h1>
+            <p class="textCol fw-500 px-3">
+                I am planning to upload my Projects here, meanwhile you can browse other contents...
+            </p>
+            <div class="d-block mx-3">
+                <form method="get" action="/search/" class="d-flex mb-3">
+                    <input type="search" class="form-control rounded-0 border-0" name="query" id="query" placeholder="Search for..." aria-label="Search">
+                </form>
+            </div>
+            <p class="mb-0">
+                <a href="/blog/topics" class="my-2 me-2">
+                    <button type="button" class="my-2 btn btn-sm btn-success rounded-pill fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Topics</button>
+                </a>
+                <a href="/blog/how-to" class="my-2">
+                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-pill fw-500 px-3"><i class="bi bi-question-circle-fill pe-1"></i> How-To</button>
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<main class="album pt-4 py-4">
+    <div class="container">
+        <img style="max-width:800px;" class="mx-auto d-block" src="{% static 'images/Coming Soon.png' %}" alt="No Results Found" width="100%">
+        <h4 class="text-center mainText fs-5 mt-4">... COMING SOON ...</h4>
+        <p class="text-center boldText">Python • Machine Learning • IOT</p>
+
+        <div class="mt-4 mb-4 d-flex justify-content-center">
+            <a href="/"><button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3 py-2 me-3"><i class="bi bi-grid-fill pe-1"></i> Back to Home</button></a>
+            <a href="/blog"><button type="button" class="btn btn-sm btn-warning rounded-pill fw-500 px-3 py-2"><i class="bi bi-hdd-rack-fill pe-1"></i> Explore Blog</button></a>
+        </div>
+    </div>
+</main>
+{% endblock body %}

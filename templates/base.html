@@ -1,0 +1,434 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{% block metaDesc %}{% endblock metaDesc %}" />
+    <meta name="robots" content="index,follow">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
+
+    <!-- External CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prism.css' %}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- heading font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- title -->
+    <title>{% block title %}{% endblock title %} - OrbitGadget</title>
+  </head>
+
+  <body>
+
+    <!-- navbar -->
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-nav">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'images/logo.svg' %}" alt="OrbitGadget" width="130">
+        </a>
+        <span class="ps-3 d-flex align-item-center fw-500 textCol place" style="border-left: dashed 2px #4c6d8f;">
+          {% block place %}{% endblock place %}
+        </span>
+
+        <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="/blog">
+                <i class="bi bi-gear-wide-connected pe-2"></i>Blog</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link {% block topicsactive %}{% endblock topicsactive %}" href="/blog/topics">
+                <i class="bi bi-question-circle pe-2"></i>Topics</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about">
+                <i class="bi bi-person-lines-fill pe-2"></i>About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="/contact">
+                <i class="bi bi-chat-dots pe-2"></i>Contact</a>
+            </li>
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-compass pe-2"></i>More</a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle-fill pe-2"></i>To-Do App</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-markdown-fill pe-2"></i>Markdown Editor</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-cpu-fill pe-2"></i>Computer Science</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- logged in logo -->
+
+        {% if user.is_authenticated %}
+        <div class="flex-shrink-0 dropdown ps-2">
+          <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="userDetails" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4 text-warning"></i>
+            <small class="ps-2 pe-1 userName">{{request.user|upper|truncatechars:8}}</small>
+          </a>
+          <ul class="dropdown-menu text-small userDrop" data-popper-placement="bottom-end" aria-labelledby="userDetails">
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#edit2Modal">
+              <i class="bi bi-gear-wide-connected pe-2"></i>Edit Profile</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
+          </ul>
+        </div>
+
+        {% else %}
+        <!-- Button to trigger login modal -->
+        <a class="boldText" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+          <li class="list-unstyled d-inline">
+            <i class="bi bi-person-circle fs-4 pe-1"></i>
+          </li>
+        </a>
+        {% endif %}
+
+      </div>
+    </nav>
+
+    <!-- messages -->
+
+    {% for message in messages %}
+      {% ifnotequal message.tags "danger" %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show mb-0 text-center" role="alert">
+        <strong>{{message.tags|capfirst}}:</strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show mb-0 text-center" role="alert">
+        <strong>Error:</strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endifnotequal %}
+    {% endfor %}
+
+    <!-- login modal -->
+
+    <div class="modal fade" id="loginmodal" aria-hidden="true" aria-labelledby="loginmodal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-card">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginmodalTitle">Log In</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pb-0">
+            <form method="post" action="/login/?next={{request.path}}">
+              {% csrf_token %}
+              <div class="mb-3">
+                <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username" required/>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control" id="loginpass" name="loginpass"placeholder="Password" required/>
+                <div id="emailHelp" class="form-text d-flex justify-content-between mt-2">
+                  <a class="boldText fw-500" href="/reset-password/?next={{request.path}}">Forgot Password?</a>
+                  <a class="boldText fw-500" href="#" data-bs-toggle="modal" data-bs-target="#signupmodal" data-bs-dismiss="modal">Not a member?</a>
+                </div>
+              </div>
+
+              <div class="modal-footer px-0">
+                <button type="submit" class="btn btn-danger text-wrap px-4 mb-3 py-2 w-100 fw-500">LOGIN</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- signup modal -->
+
+    <div class="modal fade" id="signupmodal" aria-hidden="true" aria-labelledby="signupmodal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-card">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupmodalTitle">Sign Up</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pb-0">
+            <form method="post" action="/signup/?next={{request.path}}">
+              {% csrf_token %}
+              <div class="mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required/>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col">
+                  <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required/>
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name"/>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Your e-mail" required/>
+                <div id="emailHelp" class="form-text boldText"> We'll never share your email with anyone else.</div>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Enter Password" required/>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Password" required/>
+              </div>
+
+              <div class="mb-3">
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="6LeleRAaAAAAABpJWwhp8Gjk0q0YulKoppddRjug"></div>
+              </div>
+
+              <div class="modal-footer px-0">
+                <button type="submit" class="btn btn-danger text-wrap px-4 py-2 w-100 fw-500">SIGN UP</button>
+                <a href="#" class="d-block mx-auto mb-3 mt-2">
+                  <small class="fw-500 boldText" data-bs-target="#loginmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Already a member?</small>
+                </a>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- edit details modal -->
+
+    <div class="modal fade" id="edit2Modal" aria-hidden="true" aria-labelledby="edit2ModalLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-card">
+          <div class="modal-header">
+            <h5 class="modal-title" id="edit2ModalLabel">Edit Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body pb-0">
+            <form method="post" action="/editdetprofile/?next={{request.path}}">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="newusername" name="newusername" placeholder="New Username"/>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col">
+                  <input type="text" class="form-control" id="newfname" name="newfname" placeholder="First Name"/>
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="newlname" name="newlname" placeholder="New Last Name"/>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <input type="email" class="form-control" id="newemail" name="newemail" placeholder="New e-mail"/>
+              </div>
+
+              <div class="modal-footer px-0">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger text-wrap px-4 py-2 w-100 fw-500">UPDATE</button>
+                <a href="#" class="d-block mx-auto mb-3 mt-2">
+                  <small class="fw-500 boldText" data-bs-target="#edit2Modal2" data-bs-toggle="modal" data-bs-dismiss="modal">Change Password</small>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- change password modal -->
+
+    <div class="modal fade" id="edit2Modal2" aria-hidden="true" aria-labelledby="edit2ModalLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-card">
+          <div class="modal-header">
+            <h5 class="modal-title" id="edit2Modal2">Change Password</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pb-0">
+            <form method="post" action="/editpass/?next={{request.path}}">
+              <div class="mb-3">
+                <input class="form-control" type="text" name="editusername" value="{{request.user}}" readonly/>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control" id="oldpass" name="oldpass" placeholder="Current Password" required/>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control" id="editpass1" name="editpass1" placeholder="New Password" required/>
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control" id="editpass2" name="editpass2" placeholder="Confirm Password" required/>
+              </div>
+
+              <div class="modal-footer px-0">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger text-wrap px-4 py-2 w-100 fw-500">UPDATE</button>
+                <a href="#" class="d-block mx-auto mb-3 mt-2">
+                  <small class="fw-500 boldText" data-bs-target="#edit2Modal" data-bs-toggle="modal" data-bs-dismiss="modal">Edit Profile</small>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% block body %}{% endblock body %}
+
+    <!-- footer -->
+
+    <section class="fUpper container-fluid bg-card">
+      <div class="container py-3">
+        <div class="row py-2 text-light d-flex align-items-center">
+          <div class="col-md-8">
+            <h3 style="line-height: 1.7em;" class="fs-6 fw-500 mb-0">
+              <a  href="https://github.com/ajaycc17" target="_blank" rel="noopener noreferrer" class="text-warning">
+                <span class="text-warning border-bottom border-2 border-white">Contribute</span>
+              </a> to make this site more awesome →
+            </h3>
+          </div>
+          <div class="shareSec col-md-4 d-flex align-items-center justify-content-end">
+            <a href="/site-blueprint" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-globe2 fs-5 contIcon1"></i>
+            </a>
+            <a href="https://github.com/ajaycc17" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-github fs-5 ps-4 contIcon2" ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container-fluid bg-back">
+      <div class="container pt-3">
+        <div class="row pt-4 text-light">
+          <div class="col-6 col-md-3">
+            <h3 class="fw-500 text-uppercase">Site Links</h3>
+            <ul class="footerMenu">
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/disclosure">Disclosure</a></li>
+                <li><a href="/site-terms">Site Terms</a></li>
+            </ul>
+            <h3 class="fw-500 text-uppercase">Member</h3>
+            <ul class="footerMenu">
+              <li><a href="#">Become a member</a></li>
+              <li><a href="/contribute">Donate</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <h3 class="fw-500 text-uppercase">Resources</h3>
+            <ul class="footerMenu">
+                <li><a href="https://projects.orbitgadget.com">To-Do App</a></li>
+                <li><a href="/">Note Taker</a></li>
+            </ul>
+            <h3 class="fw-500 text-uppercase">Mini Projects</h3>
+            <ul class="footerMenu">
+              <li><a href="/">Text Utility</a></li>
+              <li><a href="/">CSS Minifier</a></li>
+              <li><a href="/">Markdown Editor</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <h3 class="fw-500 text-uppercase">Contact</h3>
+            <ul class="footerMenu">
+                <li><a href="/contact">Email</a></li>
+                <li><a href="https://twitter.com/ajaycc17">Twitter</a></li>
+                <li><a href="https://instagram.com/orbitgadget">Instagram</a></li>
+            </ul>
+            <h3 class="fw-500 text-uppercase">Navigation</h3>
+            <ul class="footerMenu">
+              <li><a href="/feed">Atom Feed</a></li>
+              <li><a href="/sitemap.xml">Sitemap</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <h3 class="fw-500 text-uppercase">Tech Stack</h3>
+            <ul class="footerMenu">
+                <li><a href="https://www.python.org/">Python</a></li>
+                <li><a href="https://www.djangoproject.com/">Django</a></li>
+                <li><a href="https://www.javascript.com/">JavaScript</a></li>
+                <li><a href="https://github.com/">Github</a></li>
+            </ul>
+            <h3 class="fw-500 text-uppercase">Hosting</h3>
+            <ul class="footerMenu">
+              <li><a href="https://m.do.co/c/1ebe4926bbbd">DigitalOcean</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="featurette-divider text-light"></hr>
+        <div class="container text-light pb-2 pt-1 d-flex align-items-center justify-content-between">
+          <div>
+            <p>&copy; 2020–{% now "Y" %} • OrbitGadget</p>
+          </div>
+          <p>
+            <a href="/privacy-policy"><i class="bi bi-question-circle-fill" style="color:#d5dbe6;"></i></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- scroll to top -->
+
+    <div id="scTop" onclick="toTop()">
+      <i class="bi bi-arrow-up-circle-fill fs-1 lightText"></i>
+    </div>
+
+    <script>
+      let sTop = document.getElementById('scTop');
+      document.onscroll = scrollFunc;
+
+      function scrollFunc() {
+        if (document.pageYOffset > 200 || document.documentElement.scrollTop > 200) {
+          sTop.style.display = "block";
+        } 
+        else {
+          sTop.style.display = "none";
+        }
+      }
+
+      function toTop() {
+        window.scrollTo(0,0);
+      }
+    </script>
+
+  </body>
+
+  <!-- JS block -->
+
+  {% block js %}{% endblock js %}
+
+  <!-- Prism -->
+  <script src="{% static 'js/prism.js' %}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+</html>
