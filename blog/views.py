@@ -52,7 +52,10 @@ def blogPost(request, slug):
     catpost = BlogPost.objects.all().filter(category=categories, publish=True)
     # recommendation
     for_random = BlogPost.objects.all().filter(publish=True).exclude(slug=slug)
-    recommend = random.sample(set(for_random), 0)
+    try:
+        recommend = random.sample(set(for_random), 5)
+    except:
+        recommend = random.sample(set(for_random), 0)
 
     # if any post exists
     if post:
@@ -72,7 +75,6 @@ def blogPost(request, slug):
             else:
                 repDict[reply.parent.sno].append(reply)
 
-        print(repDict)
         context = {'post': post, 'comments': comments, 'user': request.user,
                    'repDict': repDict, 'recommended': recommend, 'readTime': readTime}
         return render(request, 'blog/blogPost.html', context)

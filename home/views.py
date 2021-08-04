@@ -135,7 +135,7 @@ def contactPage(request):
 def search(request):
     query = request.GET.get('query')
 
-    if query is None or query is '' or len(query) > 200:
+    if query is None or query == '' or len(query) > 200:
         query = 'No Results'
         context = {'query': query}
         return render(request, 'home/search.html', context)

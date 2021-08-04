@@ -50,6 +50,34 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- logged in logo for mobile devices -->
+
+        {% if user.is_authenticated %}
+        <div class="flex-shrink-0 dropdown ps-2 loggedIn">
+          <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="userDetails" data-bs-toggle="dropdown" aria-expanded="false">
+            {% load extras %}
+            <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" width="30px">
+          </a>
+          <ul class="dropdown-menu text-small userDrop" data-popper-placement="bottom-end" aria-labelledby="userDetails">
+            <li><a class="dropdown-item disabled" href="#"><i class="bi bi-emoji-smile-fill pe-2"></i>Hello! {{request.user|capfirst|truncatechars:8}}</a></li>
+            <li><hr class="dropdown-divider" style="color:#fff" /></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#edit2Modal">
+              <i class="bi bi-gear-wide-connected pe-2"></i>Edit Profile</a>
+            </li>
+            <li><hr class="dropdown-divider" style="color:#fff" /></li>
+            <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
+          </ul>
+        </div>
+
+        {% else %}
+        <!-- Button to trigger login modal -->
+        <a class="boldText loggedIn ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+          <li class="list-unstyled d-inline">
+            <i class="bi bi-person-circle fs-3 pe-1"></i>
+          </li>
+        </a>
+        {% endif %}
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -86,28 +114,29 @@
           </ul>
         </div>
 
-        <!-- logged in logo -->
+        <!-- logged in logo for desktop devices -->
 
         {% if user.is_authenticated %}
-        <div class="flex-shrink-0 dropdown ps-2">
+        <div class="flex-shrink-0 dropdown ps-2 loggedInDesk">
           <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="userDetails" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-circle fs-4 text-warning"></i>
-            <small class="ps-2 pe-1 userName">{{request.user|upper|truncatechars:8}}</small>
+            {% load extras %}
+            <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" width="30px">
+            <small class="ps-2 pe-1">{{request.user|upper|truncatechars:8}}</small>
           </a>
           <ul class="dropdown-menu text-small userDrop" data-popper-placement="bottom-end" aria-labelledby="userDetails">
             <li><a class="dropdown-item" data-bs-toggle="modal" href="#edit2Modal">
               <i class="bi bi-gear-wide-connected pe-2"></i>Edit Profile</a>
             </li>
-            <li><hr class="dropdown-divider" /></li>
+            <li><hr class="dropdown-divider" style="color:#fff" /></li>
             <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
           </ul>
         </div>
 
         {% else %}
         <!-- Button to trigger login modal -->
-        <a class="boldText" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
-          <li class="list-unstyled d-inline">
-            <i class="bi bi-person-circle fs-4 pe-1"></i>
+        <a class="boldText loggedInDesk ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+          <li class="list-unstyled d-flex align-items-center">
+            <i class="bi bi-person-circle fs-4 pe-1"></i> <span class="fw-500 ps-1">Log In</span>
           </li>
         </a>
         {% endif %}
@@ -232,8 +261,11 @@
 
           <div class="modal-body pb-0">
             <form method="post" action="/editdetprofile/?next={{request.path}}">
-              <div class="mb-3">
-                <input type="text" class="form-control" id="newusername" name="newusername" placeholder="New Username"/>
+              <div class="mb-3 d-flex align-items-center">
+                <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">
+                  <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" >
+                </a>
+                <input type="text" class="ms-3 form-control" id="newusername" name="newusername" placeholder="New Username"/>
               </div>
 
               <div class="row mb-3">

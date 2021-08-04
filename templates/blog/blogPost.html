@@ -77,7 +77,7 @@
           </a>
         </div>
 
-        <div class="my-3">
+        <div class="mt-3 mb-4">
           {% if user.is_authenticated %}
           <form action="/blog/postComment/" method="post">
             {% csrf_token %}
@@ -101,15 +101,11 @@
 
         {% for comment in comments %}
 
-        <div class="py-2 ps-2 my-4 commentParent">
-
+        <div class="py-2 ps-2 my-3 commentParent">
           <div class="d-flex align-items-center justify-content-between">
             <div>
-              {% ifequal comment.user.username "ajaycc17" %}
-                <img src="{% static 'images/Ajay Choudhury.jpg' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
-              {% else %}
-                <img src="{% static 'images/User.png' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
-                {% endifequal %}
+                {% load extras %}
+                <img src="https://gravatar.com/avatar/{{ comment.user.email|md5 }}?d=wavatar" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
                 <small><b class="textCol">{{comment.user.username|capfirst}}</b></small>&nbsp; • &nbsp;<small class="fw-500 textCol">{{comment.timeStamp|date:"d M, Y"}}</small>
             </div>
 
@@ -151,11 +147,7 @@
             {% for reply in repDict|get_val:comment.sno %}
             <div class="py-2 ps-2 mt-3 ms-2 replyChild">
               <div class="d-flex align-items-center">
-              {% ifequal reply.user.username "ajaycc17" %}
-                <img src="{% static 'images/Ajay Choudhury.jpg' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
-              {% else %}
-                <img src="{% static 'images/User.png' %}" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
-              {% endifequal %}
+                <img src="https://gravatar.com/avatar/{{ reply.user.email|md5 }}?d=wavatar" class="me-2 rounded-circle" alt="{{reply.user.username}}" class="rounded-circle" width="35px">
                 <small><b class="textCol">{{reply.user.username|capfirst}}</b></small>&nbsp; • &nbsp;<small class="fw-500 textCol">{{comment.timeStamp|date:"d M, Y"}}</small>
               </div>
     
