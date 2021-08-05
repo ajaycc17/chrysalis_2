@@ -5,39 +5,108 @@
 {% load static %}
 {% block body %}
 
+<!-- header section -->
+
 <section class="py-3 text-center container-fluid bg-blog">
     <div class="py-lg-5 py-3 mx-2">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fs-2">Awesome Projects Coming Soon</h1>
+            <h1 class="fs-2">Projects Created by Me</h1>
             <p class="textCol fw-500 px-3">
-                I am planning to upload my Projects here, meanwhile you can browse other contents...
+                I keep uploading some of my projects here, you can browse through them and their docs...
             </p>
             <div class="d-block mx-3">
                 <form method="get" action="/search/" class="d-flex mb-3">
-                    <input type="search" class="form-control rounded-0 border-0" name="query" id="query" placeholder="Search for..." aria-label="Search">
+                    <input type="search" class="form-control rounded-0 border-0" name="query" id="query" placeholder="Search in Blog..." aria-label="Search">
                 </form>
             </div>
             <p class="mb-0">
                 <a href="/blog/topics" class="my-2 me-2">
                     <button type="button" class="my-2 btn btn-sm btn-success rounded-pill fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Topics</button>
                 </a>
-                <a href="/blog/how-to" class="my-2">
-                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-pill fw-500 px-3"><i class="bi bi-question-circle-fill pe-1"></i> How-To</button>
+                <a href="/blog/development" class="my-2">
+                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-pill fw-500 px-3"><i class="bi bi-question-circle-fill pe-1"></i> Develop</button>
                 </a>
             </p>
         </div>
     </div>
 </section>
 
-<main class="album pt-4 py-4">
-    <div class="container">
-        <img style="max-width:800px;" class="mx-auto d-block" src="{% static 'images/Coming Soon.png' %}" alt="No Results Found" width="100%">
-        <h4 class="text-center mainText fs-5 mt-4">... COMING SOON ...</h4>
-        <p class="text-center boldText">Python • Machine Learning • IOT</p>
+<!-- main section -->
 
-        <div class="mt-4 mb-4 d-flex justify-content-center">
-            <a href="/"><button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3 py-2 me-3"><i class="bi bi-grid-fill pe-1"></i> Back to Home</button></a>
-            <a href="/blog"><button type="button" class="btn btn-sm btn-warning rounded-pill fw-500 px-3 py-2"><i class="bi bi-hdd-rack-fill pe-1"></i> Explore Blog</button></a>
+<main class="container-fluid py-4 bg-back">
+    <div class="album py-4">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow bg-card">
+                        <div class="row g-0 d-flex align-items-center">
+                            <div class="col-3">
+                                <img src="{% static 'images/password-generator.png' %}" class="ms-2 img-fluid rounded-start" alt="Text Utility">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="pb-2">
+                                        <h5 class="card-title">Password Generator</h5>
+                                        <p class="card-text">A random password generator made with Python.</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="/projects/password-generator">
+                                            <span class="boldText fw-500 border-bottom border-2 border-info">Try →</span>
+                                        </a>
+                                        <a href="https://github.com/ajaycc17/password-generator" target="_blank" rel="noopener noreferrer">
+                                            <i class="bi bi-github fs-5 boldText"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow bg-card">
+                        <div class="row g-0 d-flex align-items-center">
+                            <div class="col-3">
+                                <img src="{% static 'images/minifier.png' %}" class="ms-2 img-fluid rounded-start" alt="Code Minifier">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="pb-2">
+                                        <h5 class="card-title">Text Utility</h5>
+                                        <p class="card-text">A simple text utility made with Django based on Python.</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="boldText fw-500 border-bottom border-2 border-info">See in Action →</span>
+                                        <i class="bi bi-github fs-5 boldText"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow bg-card">
+                        <div class="row g-0 d-flex align-items-center">
+                            <div class="col-3">
+                                <img src="{% static 'images/orbitgadget-project.png' %}" class="ms-2 img-fluid rounded-start" alt="OrbitGadget">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="pb-2">
+                                        <h5 class="card-title">OrbitGadget</h5>
+                                        <p class="card-text">A web application made upon Django framework.</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a href="/">
+                                            <span class="boldText fw-500 border-bottom border-2 border-info">Visit →</span>
+                                        </a>
+                                            <a href="#"><i class="bi bi-github fs-5 boldText"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

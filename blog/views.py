@@ -81,7 +81,7 @@ def blogPost(request, slug):
 
     elif catpost.count() != 0:
         postCount1 = len(catpost)
-        no_of_posts = 1
+        no_of_posts = 12
         page = request.GET.get('page')
         if page is None:
             page = 1
