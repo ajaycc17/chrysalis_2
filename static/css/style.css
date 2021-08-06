@@ -12,6 +12,7 @@
   --subtleBorder: #4c6d8f;
   --link: #ffc600;
   --bg-nav: #061422;
+  --headCol: #00caf4;
 }
 
 /* to override horizontal scroll */
@@ -46,9 +47,6 @@
 }
 .boldText {
   color: var(--boldText);
-}
-h1 {
-  color: var(--white);
 }
 .lightText {
   color: var(--lightText);
@@ -102,6 +100,12 @@ body {
 /* navbar and footer */
 .bg-nav {
   background-color: var(--bg-nav);
+}
+.nav-link{
+  color: var(--boldText) !important;
+}
+.active{
+  color: var(--white) !important;
 }
 .navbar-nav > li > .dropdown-menu 
 { 
@@ -164,15 +168,61 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: "Roboto Slab", sans-serif;
-}
-
+h6,
 p,
 a,
 li,
-blockquote {
+blockquote, span {
   font-family: "Inter", sans-serif;
+}
+h1{
+  font-weight: 600;
+  line-height: 1.3em;
+  color: var(--white);
+}
+h2{
+  font-size: 24px;
+  line-height: 1.3em;
+  font-weight: 600;
+  color: var(--white);
+}
+h3{
+  font-size: 20px;
+  line-height: 1.3em;
+  color: var(--white);
+}
+h4, h5{
+  font-size: 17px;
+  color: var(--white);
+}
+@media (max-width:767.98px){
+  h2{
+    font-size: 20px;
+  }
+  h3{
+    font-size: 18px;
+  }
+}
+.og-content h2,
+.container-page h2, .og-content h3,
+.container-page h3  {
+  margin: 15px 0;
+  font-weight: 500;
+}
+.og-content li,
+.container-page li {
+  line-height: 1.8em;
+}
+.og-content li,
+.container-page li {
+  line-height: 2.4em;
+}
+.og-content ul,
+.container-page ul {
+  padding-left: 1.5rem;
+}
+.card h3{
+  color: var(--white);
 }
 
 /* links and color */
@@ -192,26 +242,6 @@ a:hover {
 .container-page p {
   line-height: 1.7em;
   color: var(--mainText);
-}
-.og-content h2,
-.container-page h2 {
-  font-family: "Inter", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-.og-content h3,
-.container-page h3 {
-  font-family: "Inter", sans-serif;
-  font-size: 1.3rem;
-  line-height: 1.7em;
-  font-weight: 600;
-}
-.og-content h4,
-.container-page h4 {
-  font-family: "Inter", sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.7em;
-  font-weight: 600;
 }
 .breadcrumb-item a {
   font-size: 14px;
@@ -271,14 +301,14 @@ img {
 
 /* placeholder */
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--bg-light) !important;
+  color: var(--lightText) !important;
   opacity: 1; /* Firefox */
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: var(--bg-light) !important;
+  color: var(--lightText) !important;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: var(--bg-light) !important;
+  color: var(--lightText) !important;
 }
 
 /* autofill input fields override */
