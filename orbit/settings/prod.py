@@ -47,6 +47,7 @@ with open('/home/ajay/aws_secret_key.txt') as e:
 
 AWS_STORAGE_BUCKET_NAME = 'orbitapi'
 AWS_S3_ENDPOINT_URL = 'https://orbitapi.nyc3.digitaloceanspaces.com'
+AWS_S3_CUSTOM_DOMAIN = 'api.orbitgadget.com'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
@@ -55,8 +56,8 @@ AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 # Static and media URL
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, 'staticfiles')
-MEDIA_URL =  'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, 'mediafiles')
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'staticfiles')
+MEDIA_URL =  'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'mediafiles')
 
 # Storage
 STATICFILES_STORAGE =  'custom_storages.StaticStorage'
