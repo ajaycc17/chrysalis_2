@@ -6,7 +6,7 @@ with open('/home/ajay/secret_key.txt') as f:
 
 # Debug in production
 DEBUG = False
-ALLOWED_HOSTS = ['67.207.82.73', 'localhost', 'orbitgadget.com']
+ALLOWED_HOSTS = ['67.207.82.73', 'localhost', 'orbitgadget.com', 'www.orbitgadget.com']
 
 # Installed apps
 INSTALLED_APPS += [
@@ -74,3 +74,13 @@ EMAIL_HOST_USER = 'ajaychoudhury1221@gmail.com'
 
 with open('/home/ajay/email_pass.txt') as h:
     EMAIL_HOST_PASSWORD = h.read().strip()
+
+# HTTPS settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+
+# HSTS settings
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
