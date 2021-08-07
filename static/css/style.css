@@ -172,7 +172,7 @@ h6,
 p,
 a,
 li,
-blockquote, span {
+blockquote {
   font-family: "Inter", sans-serif;
 }
 h1{
@@ -204,6 +204,9 @@ h4, h5{
   }
 }
 .og-content h2,
+.card h3{
+  color: var(--white);
+}
 .container-page h2, .og-content h3,
 .container-page h3  {
   margin: 15px 0;
@@ -215,14 +218,22 @@ h4, h5{
 }
 .og-content li,
 .container-page li {
-  line-height: 2.4em;
+  line-height: 1.6em;
+}
+.og-content li+li,
+.container-page li+li {
+  padding-top: 10px;
 }
 .og-content ul,
 .container-page ul {
   padding-left: 1.5rem;
 }
-.card h3{
-  color: var(--white);
+code {
+  font-size: 1em;
+  background-color: #1a2f5e;
+  color: #00c4ff;
+  padding: 0 5px;
+  border-radius: 5px;
 }
 
 /* links and color */

@@ -38,4 +38,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ajaychoudhury1221@gmail.com'
-EMAIL_HOST_PASSWORD = 'anunami@123'
+
+with open('E:/Django/email_pass.txt') as h:
+    EMAIL_HOST_PASSWORD = h.read().strip()

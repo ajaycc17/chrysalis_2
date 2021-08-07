@@ -1,12 +1,12 @@
 from .base import *
-import os
 
 # Secret key
-SECRET_KEY = 'django-insecure-2@je&3s47ffy8ph&k*8l=%ep*8mn0rj0_-b)e9r4ij=j%hqee-'
+with open('/home/ajay/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # Debug in production
 DEBUG = False
-ALLOWED_HOSTS = ['67.207.82.73', 'localhost']
+ALLOWED_HOSTS = ['67.207.82.73', 'localhost', 'orbitgadget.com']
 
 # Installed apps
 INSTALLED_APPS += [
@@ -16,21 +16,35 @@ INSTALLED_APPS += [
 # Site ID
 SITE_ID = 2
 
+# Database variables
+with open('/home/ajay/db_name.txt') as a:
+    db_name = a.read().strip()
+
+with open('/home/ajay/db_user.txt') as b:
+    db_user = b.read().strip()
+
+with open('/home/ajay/db_pass.txt') as c:
+    db_pass = c.read().strip()
+
 # Production database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'orbitgadget',
-        'USER': 'ajay',
-        'PASSWORD': 'Gothicstyle@2',
+        'NAME': db_name,
+        'USER': db_user,
+        'PASSWORD': db_pass,
         'HOST': 'localhost',
         'PORT': '',
     }
 }
 
 # Static and media files on custom storage
-AWS_ACCESS_KEY_ID = 'E3M52LQ2CERSXGXVL4EC'
-AWS_SECRET_ACCESS_KEY = 'kE794GPhYLHK3xWBEZ0Et4UqGZC3mT8eioFALf3yRLo'
+with open('/home/ajay/aws_access_key.txt') as d:
+    AWS_ACCESS_KEY_ID = d.read().strip()
+
+with open('/home/ajay/aws_secret_key.txt') as e:
+    AWS_SECRET_ACCESS_KEY = e.read().strip()
+
 AWS_STORAGE_BUCKET_NAME = 'orbitapi'
 AWS_S3_ENDPOINT_URL = 'https://orbitapi.nyc3.digitaloceanspaces.com'
 AWS_S3_OBJECT_PARAMETERS = {
@@ -49,11 +63,14 @@ STATICFILES_STORAGE =  'custom_storages.StaticStorage'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 # Production recaptcha
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LeleRAaAAAAAEHqQzug3vmGBNg1L605fHS8XYyt'
+with open('/home/ajay/recaptcha_key.txt') as g:
+    GOOGLE_RECAPTCHA_SECRET_KEY = g.read().strip()
 
 # Production SMTP Configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ajaychoudhury1221@gmail.com'
-EMAIL_HOST_PASSWORD = 'anunami@123'
+
+with open('/home/ajay/email_pass.txt') as h:
+    EMAIL_HOST_PASSWORD = h.read().strip()
