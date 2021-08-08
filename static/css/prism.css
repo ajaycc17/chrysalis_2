@@ -8,7 +8,7 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
 
 @font-face {
 font-family: 'CascadiaCode';
-src: url('../fonts/CascadiaCode.woff2') format('woff2');
+src: url('https://api.orbitgadget.com/orbitapi/staticfiles/fonts/CascadiaCode.woff2') format('woff2');
 }
 
 code[class*="language-"],

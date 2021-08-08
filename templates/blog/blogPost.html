@@ -2,7 +2,7 @@
 {% block title %}{{post.title}}{% endblock title %} 
 {% block blogactive %} active {% endblock blogactive %}
 {% block place %}Article{% endblock place %}
-{% block metaDesc %}{{post.content|truncatechars:150}}{% endblock metaDesc %}
+{% block metaDesc %}{{post.content|safe|truncatechars:157}}{% endblock metaDesc %}
 {% block metatags %}/blog/{{post.slug}}/{% endblock metatags %}
 {% block schemaBlock %}
 <script type="application/ld+json">
@@ -86,8 +86,10 @@
 
       <!-- end of header -->
 
+      {% load adsense_tags %}
+
       <article class="pt-2 og-content">
-        {{post.content|safe}}
+        {{post.content|inarticle_ads|safe}}
       </article>
 
       <!-- author section -->
@@ -233,6 +235,22 @@
 
             <a href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><i class="bi bi-telegram fs-3 textCol"></i></a>
           </div>
+        </div>
+
+        <!-- advertisement -->
+        <div class="mb-4 px-3 py-4">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7112659924280416"
+              crossorigin="anonymous"></script>
+          <!-- orbitgadget_sidebar1 -->
+          <ins class="adsbygoogle"
+              style="display:block"
+              data-ad-client="ca-pub-7112659924280416"
+              data-ad-slot="9885391743"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
 
         <!-- recommended post -->
