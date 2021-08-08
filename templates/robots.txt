@@ -1,0 +1,5 @@
+User-Agent: *
+
+Disallow: /pikachoo-admin/
+
+Sitemap: https://orbitgadget.com/sitemap.xml

@@ -3,6 +3,57 @@
 {% block blogactive %} active {% endblock blogactive %}
 {% block place %}Article{% endblock place %}
 {% block metaDesc %}{{post.content|truncatechars:150}}{% endblock metaDesc %}
+{% block metatags %}/blog/{{post.slug}}/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://orbitgadget.com/blog/{{post.slug}}/"
+    },
+    "headline": "{{post.title|title}}",
+    "description": "{{post.content|safe|truncatechars:157}}",
+    "image": "{{post.thumbnail.url}}",  
+    "author": {
+      "@type": "Person",
+      "name": "Ajay Choudhury"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "OrbitGadget",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://api.orbitgadget.com/orbitapi/staticfiles/images/logo.svg"
+      }
+    },
+    "datePublished": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}",
+    "dateModified": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}"
+  },
+  {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+      "@type": "ListItem", 
+      "position": 1, 
+      "name": "Home",
+      "item": "https://orbitgadget.com/"  
+    },{
+      "@type": "ListItem", 
+      "position": 2, 
+      "name": "Blog",
+      "item": "https://orbitgadget.com/blog/"  
+    },{
+      "@type": "ListItem", 
+      "position": 3, 
+      "name": "{{post.title|title}}",
+      "item": "https://orbitgadget.com/blog/{{post.slug}}/"  
+    }]
+  }]
+</script>
+{% endblock schemaBlock %}
+
 {% load static %}
 {% block body %}
 <div class="container py-4">

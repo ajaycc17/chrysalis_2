@@ -2,6 +2,26 @@
 {% block title %}Contribute{% endblock title %}
 {% block place %}Contribute{% endblock place %}
 {% block metaDesc %}If you liked our content and wish to thank us, you can consider supporting us with donations.{% endblock metaDesc %}
+{% block metatags %}/contribute/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Contribute",
+        "item": "https://orbitgadget.com/contribute/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% block body %} 
 
 <!-- header -->

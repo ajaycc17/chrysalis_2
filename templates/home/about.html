@@ -3,6 +3,26 @@
 {% block aboutactive %} active {% endblock aboutactive %}
 {% block place %}About{% endblock place %}
 {% block metaDesc %}Hi! I am Ajay Choudhury. I regularly add content out of my knowledge and experience on this blog. Here is a quick introduction about me and my fields of interest.{% endblock metaDesc %}
+{% block metatags %}/about/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "About",
+        "item": "https://orbitgadget.com/about/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% block body %}
 
 <!-- header -->

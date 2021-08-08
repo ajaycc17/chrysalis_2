@@ -2,6 +2,26 @@
 {% block title %}Projects{% endblock title %} 
 {% block place %}Projects{% endblock place %}
 {% block metaDesc %}We love to cover various programming and development projects under the projects section.{% endblock metaDesc %}
+{% block metatags %}/projects/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Projects",
+        "item": "https://orbitgadget.com/projects/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% load static %}
 {% block body %}
 

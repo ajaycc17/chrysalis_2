@@ -1,6 +1,36 @@
 {% extends 'base.html' %} 
-{% block title %}Home{% endblock title %}
+{% block title %}A Tech Site for Geeks{% endblock title %}
 {% block metaDesc %}OrbitGadget is a tech and study-oriented site blog for geeks, learners and tech enthusiasts. We always love being surrounded by gadgets, codes, algorithms and ideas.{% endblock metaDesc %}
+{% block metatags %}/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    [{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "OrbitGadget",
+    "alternateName": "OrbitGadget",
+    "url": "https://orbitgadget.com/",
+    "logo": "https://api.orbitgadget.com/orbitapi/staticfiles/images/logo.svg",
+    "sameAs": [
+        "https://instagram.com/orbitgadget",
+        "https://github.com/ajaycc17",
+        "https://linkedin.com/in/ajaycc17",
+        "https://twitter.com/ajaycc17"
+    ]
+    },
+    {
+    "@context": "https://schema.org/",
+    "@type": "WebSite",
+    "name": "OrbitGadget",
+    "url": "https://orbitgadget.com/",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://orbitgadget.com/search/?query={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+    }]
+</script>
+{% endblock schemaBlock %}
 {% load static %}
 {% block body %}
 <!-- hero section -->

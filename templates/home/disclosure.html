@@ -2,6 +2,26 @@
 {% block title %}Disclosure{% endblock title %} 
 {% block place %}Disclosure{% endblock place %}
 {% block metaDesc %}A detailed disclosure of what sources and services we are using to serve our content and information.{% endblock metaDesc %}
+{% block metatags %}/disclosure/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Disclosure",
+        "item": "https://orbitgadget.com/disclosure/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% block body %} 
 
 <!-- header -->

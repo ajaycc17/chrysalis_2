@@ -3,6 +3,7 @@ from django.contrib.sitemaps.views import sitemap
 from .sitemaps import BlogSitemap, StaticSitemap
 from .feeds import LatestPostsFeed
 from . import views
+from django.views.generic.base import TemplateView
 
 sitemaps = {
     'blog': BlogSitemap,
@@ -30,4 +31,6 @@ urlpatterns = [
          name='password_reset'),
     path('set-password/<slug:uidb64>/<slug:token>/',
          views.LoginAfterPasswordChangeView.as_view(), name='password_reset_confirm'),
+	path("ads.txt",TemplateView.as_view(template_name="ads.txt", content_type="text/plain")),
+	path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 ]

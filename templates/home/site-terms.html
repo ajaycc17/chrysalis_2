@@ -2,6 +2,26 @@
 {% block title %}Site Terms{% endblock title %} 
 {% block place %}Site Terms{% endblock place %}
 {% block metaDesc %}Terms and conditions of using our services and resources.{% endblock metaDesc %}
+{% block metatags %}/site-terms/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Site Terms",
+        "item": "https://orbitgadget.com/site-terms/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% block body %} 
 
 <!-- header -->

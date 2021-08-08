@@ -4,9 +4,9 @@ from django.urls import reverse
 
 
 class BlogSitemap(Sitemap):
-    changefreq = "monthly"
+    changefreq = "weekly"
     priority = 0.8
-    protocol = 'http'
+    protocol = 'https'
 
     def items(self):
         return BlogPost.objects.all()

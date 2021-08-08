@@ -47,7 +47,7 @@ with open('/home/ajay/aws_secret_key.txt') as e:
 
 AWS_STORAGE_BUCKET_NAME = 'orbitapi'
 AWS_S3_ENDPOINT_URL = 'https://orbitapi.nyc3.digitaloceanspaces.com'
-AWS_S3_CUSTOM_DOMAIN = 'api.orbitgadget.com'
+AWS_S3_CUSTOM_DOMAIN = 'api.orbitgadget.com/orbitapi'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
@@ -71,7 +71,7 @@ with open('/home/ajay/recaptcha_key.txt') as g:
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ajaychoudhury1221@gmail.com'
+EMAIL_HOST_USER = 'orbitgadget@gmail.com'
 
 with open('/home/ajay/email_pass.txt') as h:
     EMAIL_HOST_PASSWORD = h.read().strip()

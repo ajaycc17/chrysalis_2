@@ -3,6 +3,26 @@
 {% block contactactive %} active {% endblock contactactive %}
 {% block place %}Contact{% endblock place %}
 {% block metaDesc %}Contact us for queries regarding privacy policy, site terms, content issues, advertising, feedback or any other genuine concern. We are happy to help.{% endblock metaDesc %}
+{% block metatags %}/contact/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Contact",
+        "item": "https://orbitgadget.com/contact/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% block body %} 
 
 <!-- header -->

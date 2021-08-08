@@ -3,6 +3,31 @@
 {% block blogactive %}active{% endblock blogactive %}
 {% block place %}Blog{% endblock place %}
 {% block metaDesc %}{{topics.description}}{% endblock metaDesc %}
+{% block metatags %}/blog/{{topics.title}}/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Blog",
+        "item": "https://orbitgadget.com/blog/"  
+    },{
+        "@type": "ListItem", 
+        "position": 3, 
+        "name": "{{topics.title|capfirst}}",
+        "item": "https://orbitgadget.com/blog/{{topics}}/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
 {% load static %}
 {% block body %} 
 <div class="pb-4 bg-back">

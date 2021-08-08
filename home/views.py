@@ -13,7 +13,6 @@ from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmVie
 from django.contrib.auth.views import INTERNAL_RESET_SESSION_TOKEN
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-
 class MyPasswordResetView(UserPassesTestMixin, PasswordResetView):
     def test_func(self):
         return self.request.user.is_anonymous
