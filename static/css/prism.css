@@ -6,11 +6,6 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
  * @author ocodia
  */
 
-@font-face {
-font-family: 'CascadiaCode';
-src: url('https://api.orbitgadget.com/orbitapi/staticfiles/fonts/CascadiaCode.woff2') format('woff2');
-}
-
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #f8f8f2;
