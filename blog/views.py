@@ -75,6 +75,16 @@ def blogPost(request, slug):
             else:
                 repDict[reply.parent.sno].append(reply)
 
+        if (request.POST.get('liker', 'off')) == 'on':
+            redirect_to = request.POST.get('path')
+            post.likes += 1
+            post.save()
+            return redirect(redirect_to)
+
+        elif request.POST.get('disliker', 'off') == 'on':
+            redirect_to = request.POST.get('path')
+            return redirect(redirect_to)
+
         context = {'post': post, 'comments': comments, 'user': request.user,
                    'repDict': repDict, 'recommended': recommend, 'readTime': readTime}
         return render(request, 'blog/blogPost.html', context)

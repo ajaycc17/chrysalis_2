@@ -97,6 +97,18 @@
         {{post.content|inarticle_ads|safe}}
       </article>
 
+      <!-- anonymous likes for article -->
+
+      <div class="px-3 py-4 rounded-2 my-4 bg-card d-flex flex-column align-items-center">
+        <p class="fw-500">Was this Article Helpful?</p>
+        <form action="" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="path" value="{{request.path}}">
+          <button class="btn btn-sm rounded-3 btn-success px-3 me-2 fw-500" type="submit" value="on" name="liker">Yes</button>
+          <button class="btn btn-sm rounded-3 btn-success px-3 fw-500" type="submit" value="on" name="disliker">No</button>
+        </form>
+      </div>
+
       <!-- author section -->
 
       <section class="py-4 authSec" style="border-top: dashed 2px #4c6d8f;border-bottom: dashed 2px #4c6d8f;">
@@ -243,7 +255,7 @@
         </div>
 
         <!-- advertisement -->
-        <div class="mb-4 px-3 py-4">
+        <div class="mb-4 py-4">
           <!-- orbitgadget_sidebar1 -->
           <ins class="adsbygoogle sideAd"
               style="display:block"
