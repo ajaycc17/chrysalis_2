@@ -52,9 +52,9 @@ def blogPost(request, slug):
     catpost = BlogPost.objects.all().filter(category=categories, publish=True)
     # recommendation
     try:
-        recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes')[:5]
+        recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes', '-timestamp')[:5]
     except:
-        recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes')
+        recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes', '-timestamp')
 
     # if any post exists
     if post:
