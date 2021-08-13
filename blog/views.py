@@ -51,11 +51,10 @@ def blogPost(request, slug):
     categories = Topic.objects.all().filter(title=slug).first()
     catpost = BlogPost.objects.all().filter(category=categories, publish=True)
     # recommendation
-    for_random = BlogPost.objects.all().filter(publish=True).exclude(slug=slug)
     try:
-        recommend = random.sample(set(for_random), 5)
+        recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes')[:5]
     except:
-        recommend = random.sample(set(for_random), 0)
+        recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes')
 
     # if any post exists
     if post:
@@ -90,9 +89,11 @@ def blogPost(request, slug):
             n = post.sno + 1
         except:
             pass
+        
+        topics = Topic.objects.all()
 
         context = {'post': post, 'comments': comments, 'user': request.user,
-                   'repDict': repDict, 'recommended': recommend, 'readTime': readTime, 'nextPost':BlogPost.objects.all().filter(sno = n).first(), 'prevPost':BlogPost.objects.all().filter(sno = p).first()}
+                   'repDict': repDict, 'recommended': recommend, 'readTime': readTime, 'nextPost':BlogPost.objects.all().filter(sno = n).first(), 'prevPost':BlogPost.objects.all().filter(publish=True, sno = p).first(), 'topics':topics}
         return render(request, 'blog/blogPost.html', context)
 
     elif catpost.count() != 0:

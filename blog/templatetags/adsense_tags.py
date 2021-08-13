@@ -21,9 +21,11 @@ def inarticle_ads(value):
     # Break down content into paragraphs
     paragraphs = value.split("</p>")
 
-    # insert after every 5th paragraph
+    # insert after every 7th paragraph
     for i in range(len(paragraphs)):
-        if i % 5 == 0:
+        if i % 7 == 0:
+            if i == 0:
+                continue
             paragraphs[i] = paragraphs[i] + ad_code[j]
             if j < 5:
                 j += 1
