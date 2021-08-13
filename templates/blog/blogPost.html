@@ -111,7 +111,7 @@
 
       <!-- author section -->
 
-      <section class="py-4 authSec" style="border-top: dashed 2px #4c6d8f;border-bottom: dashed 2px #4c6d8f;">
+      <section class="py-4 authSec">
         <div class="bg-card mainText py-4 px-2 row gx-4 d-flex mx-0">
           <div class="authImg col-md-2 d-flex align-items-center justify-content-between">
             <div>
@@ -134,10 +134,41 @@
         </div>
       </section>
 
+      <!-- navigation -->
+      <section class="py-4">
+        <div class="row g-2">
+          <div class="col-md-6">
+          {% if prevPost is not None %}
+            <a href="/blog/{{prevPost.slug}}" class="text-warning">
+              <div class="py-4 card h-100 bg-card p-3 d-flex flex-column align-items-start">
+                <p class="fw-500 mb-2">{{prevPost.title}}</p>
+                <div>
+                  <button type="button" class="btn btn-sm py-0 rounded-1 fw-500 btn-success">← Previous</button>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+          </div>
+          <div class="col-md-6">
+          {% if nextPost is not None %}
+            <a href="/blog/{{nextPost.slug}}" class="text-warning">
+              <div class="py-4 card h-100 bg-card p-3 d-flex flex-column align-items-end">
+                <p class="fw-500 mb-2">{{nextPost.title}}</p>
+                <div>
+                  <button type="button" class="btn btn-sm py-0 rounded-1 fw-500 btn-success">Next →</button>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+          </div>
+        </div>
+      </section>
+
+
       <!-- comments section -->
 
-      <section class="comments pt-4">
-        <div class="d-flex align-items-center justify-content-between pb-1" style="border-bottom: dashed 2px #4c6d8f;">
+      <section class="comments">
+        <div class="d-flex align-items-center justify-content-between py-3" style="border-bottom: dashed 2px #4c6d8f;border-top: dashed 2px #4c6d8f;">
           <h3 class="fs-4 mb-0"><i class="textCol bi bi-chat-dots-fill"></i> {{comments.count}} Comments</h3>
           <a href="/site-terms">
             <div class="d-flex align-items-center textCol">

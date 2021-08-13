@@ -85,8 +85,14 @@ def blogPost(request, slug):
             redirect_to = request.POST.get('path')
             return redirect(redirect_to)
 
+        try:
+            p = post.sno - 1
+            n = post.sno + 1
+        except:
+            pass
+
         context = {'post': post, 'comments': comments, 'user': request.user,
-                   'repDict': repDict, 'recommended': recommend, 'readTime': readTime}
+                   'repDict': repDict, 'recommended': recommend, 'readTime': readTime, 'nextPost':BlogPost.objects.all().filter(sno = n).first(), 'prevPost':BlogPost.objects.all().filter(sno = p).first()}
         return render(request, 'blog/blogPost.html', context)
 
     elif catpost.count() != 0:

@@ -159,6 +159,7 @@ div.code-toolbar > .toolbar > .toolbar-item > button {
 	line-height: normal;
 	overflow: visible;
 	padding: 0;
+	user-select: none;
 	-webkit-user-select: none; /* for button */
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -194,4 +195,3 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover,
 div.code-toolbar > .toolbar > .toolbar-item > span:focus {
 	text-decoration: none;
 }
-
