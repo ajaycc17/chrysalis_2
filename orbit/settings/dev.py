@@ -14,12 +14,8 @@ SITE_ID = 2
 # Local database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'orbit',
-        'USER': 'orbit',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -39,5 +35,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'orbitgadget@gmail.com'
 
-with open('E:/Django/email_pass.txt') as h:
+with open('E:/Django Dev/email_pass.txt') as h:
     EMAIL_HOST_PASSWORD = h.read().strip()
