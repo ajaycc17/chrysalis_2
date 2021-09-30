@@ -26,7 +26,7 @@ def inarticle_ads(value):
         if i % 7 == 0:
             if i == 0:
                 continue
-            paragraphs[i] = paragraphs[i] + ad_code[j]
+            paragraphs[i] = paragraphs[i] + "<p>" + ad_code[j] + "</p>"
             if j < 5:
                 j += 1
             value = "</p>".join(paragraphs)
