@@ -1,748 +1,370 @@
-{% extends 'base.html' %} {% block title %}{{post.title}}{% endblock title %} {%
-block blogactive %} active {% endblock blogactive %} {% block place %}Article{%
-endblock place %} {% block metaDesc %}{{post.content|safe|truncatechars:157}}{%
-endblock metaDesc %} {% block metatags %}/blog/{{post.slug}}/{% endblock
-metatags %} {% block schemaBlock %}
+{% extends 'base.html' %} 
+{% block title %}{{post.title}}{% endblock title %} 
+{% block blogactive %} active {% endblock blogactive %}
+{% block place %}Article{% endblock place %}
+{% block metaDesc %}{{post.content|safe|truncatechars:157}}{% endblock metaDesc %}
+{% block metatags %}/blog/{{post.slug}}/{% endblock metatags %}
+{% block schemaBlock %}
 <script type="application/ld+json">
-    [{
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://orbitgadget.com/blog/{{post.slug}}/"
-      },
-      "headline": "{{post.title|title}}",
-      "description": "{{post.content|safe|truncatechars:157}}",
-      "image": "{{post.thumbnail.url}}",
-      "author": {
-        "@type": "Person",
-        "name": "Ajay Choudhury"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "OrbitGadget",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://api.orbitgadget.com/orbitapi/staticfiles/images/logo.svg"
-        }
-      },
-      "datePublished": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}",
-      "dateModified": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}"
+  [{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://orbitgadget.com/blog/{{post.slug}}/"
     },
-    {
-      "@context": "https://schema.org/",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://orbitgadget.com/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Blog",
-        "item": "https://orbitgadget.com/blog/"
-      },{
-        "@type": "ListItem",
-        "position": 3,
-        "name": "{{post.category|capfirst}}",
-        "item": "https://orbitgadget.com/blog/{{post.category}}/"
-      },{
-        "@type": "ListItem",
-        "position": 4,
-        "name": "{{post.title|title}}",
-        "item": "https://orbitgadget.com/blog/{{post.slug}}/"
-      }]
+    "headline": "{{post.title|title}}",
+    "description": "{{post.content|safe|truncatechars:157}}",
+    "image": "{{post.thumbnail.url}}",  
+    "author": {
+      "@type": "Person",
+      "name": "Ajay Choudhury"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "OrbitGadget",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://api.orbitgadget.com/orbitapi/staticfiles/images/logo.svg"
+      }
+    },
+    "datePublished": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}",
+    "dateModified": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}"
+  },
+  {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+      "@type": "ListItem", 
+      "position": 1, 
+      "name": "Home",
+      "item": "https://orbitgadget.com/"  
+    },{
+      "@type": "ListItem", 
+      "position": 2, 
+      "name": "Blog",
+      "item": "https://orbitgadget.com/blog/"  
+    },{
+      "@type": "ListItem", 
+      "position": 3, 
+      "name": "{{post.category|capfirst}}",
+      "item": "https://orbitgadget.com/blog/{{post.category}}/"  
+    },{
+      "@type": "ListItem", 
+      "position": 4, 
+      "name": "{{post.title|title}}",
+      "item": "https://orbitgadget.com/blog/{{post.slug}}/"  
     }]
+  }]
 </script>
-{% endblock schemaBlock %} {% load static %} {% block body %}
+{% endblock schemaBlock %}
+
+{% load static %}
+{% block body %}
 <div class="container py-4">
-    <div class="row g-4">
-        <!-- post content section -->
+  <div class="row g-4">
 
-        <main class="col-md-8 mainPost">
-            <!-- header -->
+    <!-- post content section -->
 
-            <nav style="--bs-breadcrumb-divider: '•'" aria-label="breadcrumb">
-                <ol class="breadcrumb mb-2">
-                    <li class="breadcrumb-item fw-500"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item fw-500">
-                        <a href="/blog">Blog</a>
-                    </li>
-                    <li class="breadcrumb-item fw-500">
-                        <a href="/blog/{{post.category}}"
-                            >{{post.category|capfirst}}</a
-                        >
-                    </li>
-                </ol>
-            </nav>
+    <main class="col-md-8 mainPost">
 
-            <h1 class="fs-3">{{post.title}}</h1>
+      <!-- header -->
 
-            <div class="mb-3">
-                <small class="me-2 fw-500 text-warning"
-                    ><i class="bi bi-person-circle pe-1"></i>
-                    <span class="border-bottom border-2 border-info"
-                        >{{post.author}}</span
-                    ></small
-                >
-                <small class="mx-2 fw-500 text-warning"
-                    ><i class="bi bi-clock-history pe-1"></i>
-                    {{post.timeStamp|date:"d M, Y"}}</small
-                >
-                <small class="text-warning mx-2 fw-500"
-                    ><i class="bi bi-hourglass-bottom pe-1"></i>{{readTime}}
-                    mins</small
-                >
+      <nav style="--bs-breadcrumb-divider: '•';" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2">
+          <li class="breadcrumb-item fw-500"><a href="/">Home</a></li>
+          <li class="breadcrumb-item fw-500"><a href="/blog">Blog</a></li>
+          <li class="breadcrumb-item fw-500"><a href="/blog/{{post.category}}">{{post.category|capfirst}}</a></li>
+        </ol>
+      </nav>
+
+      <h1 class="fs-3">{{post.title}}</h1>
+
+      <div class="mb-3">
+        <small class="me-2 fw-500 text-warning"><i class="bi bi-person-circle pe-1"></i> <span class="border-bottom border-2 border-info">{{post.author}}</span></small>
+        <small class="mx-2 fw-500 text-warning"><i class="bi bi-clock-history pe-1"></i> {{post.timeStamp|date:"d M, Y"}}</small>
+        <small class="text-warning mx-2 fw-500"><i class="bi bi-hourglass-bottom pe-1"></i>{{readTime}} mins</small>
+      </div>
+      <div class="mb-3">
+        <img src="{{post.thumbnail.url}}" alt="{{post.title}}" style="width: -webkit-fill-available">
+      </div>
+
+      <!-- end of header -->
+
+      <!-- {% load adsense_tags %} -->
+      <article class="pt-2 og-content">
+        <!-- {{post.content|inarticle_ads|safe}} -->
+        {{post.content|safe}}
+      </article>
+
+      <!-- anonymous likes for article -->
+
+      <div class="px-3 py-4 rounded-2 my-4 bg-card d-flex flex-column align-items-center">
+        <p class="fw-500">Was this Article Helpful?</p>
+        <form action="" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="path" value="{{request.path}}">
+          <button class="btn btn-sm rounded-3 btn-success px-3 me-2 fw-500" type="submit" value="on" name="liker">Yes</button>
+          <button class="btn btn-sm rounded-3 btn-success px-3 fw-500" type="submit" value="on" name="disliker">No</button>
+        </form>
+      </div>
+
+      <!-- author section -->
+
+      <section class="py-4 authSec">
+        <div class="bg-card mainText py-4 px-2 row gx-4 d-flex mx-0">
+          <div class="authImg col-md-2 d-flex align-items-center justify-content-between">
+            <div>
+              <img class="rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" alt="{{post.author}}" width="100px">
             </div>
-            <div class="mb-3">
-                <img
-                    src="{{post.thumbnail.url}}"
-                    alt="{{post.title}}"
-                    style="width: -webkit-fill-available"
-                />
+          </div>
+          <div class="col-md-10">
+            <div>
+              <div class="authTitle pb-2 d-flex justify-content-between align-items-center">
+                <h4 class="fs-5 mb-0">{{post.author}}</h4>
+                <span>
+                  <a class="authSocial ps-0" href="https://twitter.com/ajaycc17"><i class="bi bi-twitter"></i></a>
+                  <a class="authSocial" href="https://linkedin.com/in/ajaycc17"><i class="bi bi-linkedin"></i></a>
+                  <a class="authSocial" href="https://github.com/ajaycc17"><i class="bi bi-github"></i></a>
+                </span> 
+              </div>
+              <p class="authBio mb-0">A learner and a student of technlogy. He loves sharing experiences and learning with others through his projects and blog. Along with technology, he loves playing football and enjoys listening to music and podcasts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- navigation -->
+      <section class="py-4">
+        <div class="row g-2">
+          <div class="col-md-6">
+          {% if prevPost is not None %}
+            <a href="/blog/{{prevPost.slug}}" class="text-warning">
+              <div class="py-4 card h-100 bg-card p-3 d-flex flex-column align-items-start">
+                <p class="fw-500 mb-2">{{prevPost.title}}</p>
+                <div>
+                  <button type="button" class="btn btn-sm py-0 rounded-1 fw-500 btn-success">← Previous</button>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+          </div>
+          <div class="col-md-6">
+          {% if nextPost is not None %}
+            <a href="/blog/{{nextPost.slug}}" class="text-warning">
+              <div class="py-4 card h-100 bg-card p-3 d-flex flex-column align-items-end">
+                <p class="fw-500 mb-2 text-end">{{nextPost.title}}</p>
+                <div>
+                  <button type="button" class="btn btn-sm py-0 rounded-1 fw-500 btn-success">Next →</button>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+          </div>
+        </div>
+      </section>
+
+
+      <!-- comments section -->
+
+      <section class="comments">
+        <div class="d-flex align-items-center justify-content-between py-3" style="border-bottom: dashed 2px #4c6d8f;border-top: dashed 2px #4c6d8f;">
+          <h3 class="fs-4 mb-0"><i class="textCol bi bi-chat-dots-fill"></i> {{comments.count}} Comments</h3>
+          <a href="/site-terms">
+            <div class="d-flex align-items-center textCol">
+              <i class="bi bi-exclamation-circle-fill fw-500 pe-1"></i>
+              <span class="fw-500">Info</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mt-3 mb-4">
+          {% if user.is_authenticated %}
+          <form action="/blog/postComment/" method="post">
+            {% csrf_token %}
+            <div class="mt-4 mb-2">
+              <textarea class="form-control bg-transparent subtleBorder text-white" name="comment" id="comment" rows="5" aria-describedby="commentHelp" placeholder="Your comment here."></textarea>
+              <div id="commentHelp" class="form-text textCol">Please try to be clear, meaningful and precise in the comment. </div>
+            </div>
+            <input type="hidden" name="postSno" value="{{post.sno}}">
+            <input type="hidden" name="parentSno" value="">
+            <button type="submit" class="btn btn-sm px-3 rounded-pill fw-500 btn-success">Submit →</button>
+          </form>
+
+          {% else %}
+          <div class="alert bg-card text-center" role="alert">
+            Please <a href="#" class="alert-link text-warning" data-bs-toggle="modal" data-bs-target="#loginmodal">LOG IN</a> to continue the discussion...
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- comments display -->
+
+        {% for comment in comments %}
+
+        <div class="py-2 ps-2 my-3 commentParent">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+                {% load extras %}
+                <img src="https://gravatar.com/avatar/{{ comment.user.email|md5 }}?d=wavatar" class="me-2 rounded-circle" alt="{{comment.user.username}}" class="rounded-circle" width="35px">
+                <small><b class="textCol">{{comment.user.username|capfirst}}</b></small>&nbsp; • &nbsp;<small class="fw-500 textCol">{{comment.timeStamp|date:"d M, Y"}}</small>
             </div>
 
-            <!-- end of header -->
-
-            <!-- {% load adsense_tags %} -->
-            <article class="pt-2 og-content">
-                <!-- {{post.content|inarticle_ads|safe}} -->
-                {{post.content|safe}}
-            </article>
-
-            <!-- anonymous likes for article -->
-
-            <div
-                class="
-                    px-3
-                    py-4
-                    rounded-2
-                    my-4
-                    bg-card
-                    d-flex
-                    flex-column
-                    align-items-center
-                "
-            >
-                <p class="fw-500">Was this Article Helpful?</p>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="path" value="{{request.path}}" />
-                    <button
-                        class="
-                            btn btn-sm
-                            rounded-3
-                            btn-success
-                            px-3
-                            me-2
-                            fw-500
-                        "
-                        type="submit"
-                        value="on"
-                        name="liker"
-                    >
-                        Yes
-                    </button>
-                    <button
-                        class="btn btn-sm rounded-3 btn-success px-3 fw-500"
-                        type="submit"
-                        value="on"
-                        name="disliker"
-                    >
-                        No
-                    </button>
-                </form>
-            </div>
-
-            <!-- author section -->
-
-            <section class="py-4 authSec">
-                <div class="bg-card mainText py-4 px-2 row gx-4 d-flex mx-0">
-                    <div
-                        class="
-                            authImg
-                            col-md-2
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                        "
-                    >
-                        <div>
-                            <img
-                                class="rounded-circle"
-                                src="{% static 'images/Ajay Choudhury.jpg' %}"
-                                alt="{{post.author}}"
-                                width="100px"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div>
-                            <div
-                                class="
-                                    authTitle
-                                    pb-2
-                                    d-flex
-                                    justify-content-between
-                                    align-items-center
-                                "
-                            >
-                                <h4 class="fs-5 mb-0">{{post.author}}</h4>
-                                <span>
-                                    <a
-                                        class="authSocial ps-0"
-                                        href="https://twitter.com/ajaycc17"
-                                        ><i class="bi bi-twitter"></i
-                                    ></a>
-                                    <a
-                                        class="authSocial"
-                                        href="https://linkedin.com/in/ajaycc17"
-                                        ><i class="bi bi-linkedin"></i
-                                    ></a>
-                                    <a
-                                        class="authSocial"
-                                        href="https://github.com/ajaycc17"
-                                        ><i class="bi bi-github"></i
-                                    ></a>
-                                </span>
-                            </div>
-                            <p class="authBio mb-0">
-                                A learner and a student of technlogy. He loves
-                                sharing experiences and learning with others
-                                through his projects and blog. Along with
-                                technology, he loves playing football and enjoys
-                                listening to music and podcasts.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- navigation -->
-            <section class="py-4">
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        {% if prevPost is not None %}
-                        <a href="/blog/{{prevPost.slug}}" class="text-warning">
-                            <div
-                                class="
-                                    py-4
-                                    card
-                                    h-100
-                                    bg-card
-                                    p-3
-                                    d-flex
-                                    flex-column
-                                    align-items-start
-                                "
-                            >
-                                <p class="fw-500 mb-2">{{prevPost.title}}</p>
-                                <div>
-                                    <button
-                                        type="button"
-                                        class="
-                                            btn btn-sm
-                                            py-0
-                                            rounded-1
-                                            fw-500
-                                            btn-success
-                                        "
-                                    >
-                                        ← Previous
-                                    </button>
-                                </div>
-                            </div>
-                        </a>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-6">
-                        {% if nextPost is not None %}
-                        <a href="/blog/{{nextPost.slug}}" class="text-warning">
-                            <div
-                                class="
-                                    py-4
-                                    card
-                                    h-100
-                                    bg-card
-                                    p-3
-                                    d-flex
-                                    flex-column
-                                    align-items-end
-                                "
-                            >
-                                <p class="fw-500 mb-2 text-end">
-                                    {{nextPost.title}}
-                                </p>
-                                <div>
-                                    <button
-                                        type="button"
-                                        class="
-                                            btn btn-sm
-                                            py-0
-                                            rounded-1
-                                            fw-500
-                                            btn-success
-                                        "
-                                    >
-                                        Next →
-                                    </button>
-                                </div>
-                            </div>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </section>
-
-            <!-- comments section -->
-
-            <section class="comments">
-                <div
-                    class="
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        py-3
-                    "
-                    style="
-                        border-bottom: dashed 2px #4c6d8f;
-                        border-top: dashed 2px #4c6d8f;
-                    "
-                >
-                    <h3 class="fs-4 mb-0">
-                        <i class="textCol bi bi-chat-dots-fill"></i>
-                        {{comments.count}} Comments
-                    </h3>
-                    <a href="/site-terms">
-                        <div class="d-flex align-items-center textCol">
-                            <i
-                                class="
-                                    bi bi-exclamation-circle-fill
-                                    fw-500
-                                    pe-1
-                                "
-                            ></i>
-                            <span class="fw-500">Info</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="mt-3 mb-4">
-                    {% if user.is_authenticated %}
-                    <form action="/blog/postComment/" method="post">
-                        {% csrf_token %}
-                        <div class="mt-4 mb-2">
-                            <textarea
-                                class="
-                                    form-control
-                                    bg-transparent
-                                    subtleBorder
-                                    text-white
-                                "
-                                name="comment"
-                                id="comment"
-                                rows="5"
-                                aria-describedby="commentHelp"
-                                placeholder="Your comment here."
-                            ></textarea>
-                            <div id="commentHelp" class="form-text textCol">
-                                Please try to be clear, meaningful and precise
-                                in the comment.
-                            </div>
-                        </div>
-                        <input
-                            type="hidden"
-                            name="postSno"
-                            value="{{post.sno}}"
-                        />
-                        <input type="hidden" name="parentSno" value="" />
-                        <button
-                            type="submit"
-                            class="
-                                btn btn-sm
-                                px-3
-                                rounded-pill
-                                fw-500
-                                btn-success
-                            "
-                        >
-                            Submit →
-                        </button>
-                    </form>
-
-                    {% else %}
-                    <div class="alert bg-card text-center" role="alert">
-                        Please
-                        <a
-                            href="#"
-                            class="alert-link text-warning"
-                            data-bs-toggle="modal"
-                            data-bs-target="#loginmodal"
-                            >LOG IN</a
-                        >
-                        to continue the discussion...
-                    </div>
-                    {% endif %}
-                </div>
-
-                <!-- comments display -->
-
-                {% for comment in comments %}
-
-                <div class="py-2 ps-2 my-3 commentParent">
-                    <div
-                        class="
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                        "
-                    >
-                        <div>
-                            {% load extras %}
-                            <img
-                                src="https://gravatar.com/avatar/{{ comment.user.email|md5 }}?d=wavatar"
-                                class="me-2 rounded-circle"
-                                alt="{{comment.user.username}}"
-                                class="rounded-circle"
-                                width="35px"
-                            />
-                            <small
-                                ><b class="textCol"
-                                    >{{comment.user.username|capfirst}}</b
-                                ></small
-                            >&nbsp; • &nbsp;<small class="fw-500 textCol"
-                                >{{comment.timeStamp|date:"d M, Y"}}</small
-                            >
-                        </div>
-
-                        {% if user.is_authenticated %}
-                        <div
-                            class="cursorPoint me-3 d-flex align-items-center"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#replyBox{{comment.sno}}"
-                            aria-expanded="false"
-                            aria-controls="replyBox{{comment.sno}}"
-                        >
-                            <i class="bi bi-reply-fill fs-5 pe-1"></i>
-                            <span class="fw-500">Reply</span>
-                        </div>
-                        {% else %}
-                        <div
-                            class="cursorPoint2 me-3 d-flex align-items-center"
-                            data-bs-toggle="modal"
-                            data-bs-target="#loginmodal"
-                        >
-                            <i class="bi bi-exclamation-circle-fill pe-1"></i
-                            ><span class="fw-500">Log in</span>
-                        </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="d-flex align-items-center pt-2">
-                        <p class="mb-0 mainText">
-                            {{comment.comment|capfirst}}
-                        </p>
-                    </div>
-
-                    {% if user.is_authenticated %}
-                    <div class="collapse" id="replyBox{{comment.sno}}">
-                        <div class="card bg-back card-body my-2">
-                            <form action="/blog/postComment/" method="post">
-                                {% csrf_token %}
-                                <div class="mb-3">
-                                    <textarea
-                                        class="
-                                            form-control
-                                            bg-transparent
-                                            subtleBorder
-                                            text-white
-                                        "
-                                        name="comment"
-                                        rows="3"
-                                        placeholder="Your reply here."
-                                    ></textarea>
-                                    <input
-                                        type="hidden"
-                                        name="parentSno"
-                                        value="{{comment.sno}}"
-                                    />
-                                </div>
-                                <input
-                                    type="hidden"
-                                    name="postSno"
-                                    value="{{post.sno}}"
-                                />
-                                <button
-                                    type="submit"
-                                    class="
-                                        btn btn-sm
-                                        px-3
-                                        rounded-pill
-                                        fw-500
-                                        btn-success
-                                    "
-                                >
-                                    Submit →
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    <!-- Replies -->
-
-                    <div class="replies">
-                        {% load extras %} {% for reply in
-                        repDict|get_val:comment.sno %}
-                        <div class="py-2 ps-2 mt-3 ms-2 replyChild">
-                            <div class="d-flex align-items-center">
-                                <img
-                                    src="https://gravatar.com/avatar/{{ reply.user.email|md5 }}?d=wavatar"
-                                    class="me-2 rounded-circle"
-                                    alt="{{reply.user.username}}"
-                                    class="rounded-circle"
-                                    width="35px"
-                                />
-                                <small
-                                    ><b class="textCol"
-                                        >{{reply.user.username|capfirst}}</b
-                                    ></small
-                                >&nbsp; • &nbsp;<small class="fw-500 textCol"
-                                    >{{comment.timeStamp|date:"d M, Y"}}</small
-                                >
-                            </div>
-
-                            <div class="d-flex align-items-center pt-2">
-                                <p class="mb-0 mainText">
-                                    {{reply.comment|capfirst}}
-                                </p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endfor %}
-            </section>
-        </main>
-
-        <!-- sidebar -->
-        <aside class="col-md-4 sideBar ps-3 mb-3">
-            <!-- user details -->
-            {% if request.user.is_authenticated %}
-            <div class="mb-4">
-                <div
-                    class="alert py-4"
-                    role="alert"
-                    style="background-color: #004173"
-                >
-                    <h4 class="text-center text-white">
-                        Hello {{request.user|capfirst}}!
-                    </h4>
-                    <p class="text-center mainText my-3">
-                        <span class="badge bg-success"
-                            ><i class="bi bi-person-circle pe-1"></i
-                            >PROFILE</span
-                        >
-                        <span class="badge bg-success"
-                            ><i class="bi bi-bell-fill pe-1"></i
-                            >NOTIFICATIONS</span
-                        >
-                        <span class="badge bg-success"
-                            ><i class="bi bi-chat-dots-fill pe-1"></i
-                            >COMMUNITY</span
-                        >
-                    </p>
-                    <p
-                        class="mb-0 pt-3 text-center"
-                        style="border-top: dashed 2px var(--subtleBorder)"
-                    >
-                        <i class="bi bi-star-fill pe-2 text-warning"></i>Be a
-                        Supporter
-                    </p>
-                </div>
+            {% if user.is_authenticated %}
+            <div class="cursorPoint me-3 d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#replyBox{{comment.sno}}" aria-expanded="false" aria-controls="replyBox{{comment.sno}}">
+              <i class="bi bi-reply-fill fs-5 pe-1"></i> <span class="fw-500">Reply</span>
             </div>
             {% else %}
-            <!-- ask for log in -->
-            <div class="mb-4">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
-                    <div
-                        class="alert py-4"
-                        role="alert"
-                        style="background-color: #054b16"
-                    >
-                        <h4 class="text-center text-white">LOG IN</h4>
-                        <p class="text-center mainText mb-0">
-                            Get access to
-                            <span class="badge bg-primary"
-                                ><i class="bi bi-star-fill pe-1"></i
-                                >member</span
-                            >
-                            only articles, discussions, community and much more.
-                        </p>
-                    </div>
-                </a>
+            <div class="cursorPoint2 me-3 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#loginmodal">
+              <i class="bi bi-exclamation-circle-fill pe-1"></i><span class="fw-500">Log in</span>
             </div>
             {% endif %}
+          </div>
 
-            <!-- advertisement orbitgadget sidebar1 -->
-            <div class="mb-4">
-                <ins
-                    class="adsbygoogle sideAd"
-                    style="display: block"
-                    data-ad-client="ca-pub-7112659924280416"
-                    data-ad-slot="9885391743"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"
-                ></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+          <div class="d-flex align-items-center pt-2">
+            <p class="mb-0 mainText">{{comment.comment|capfirst}}</p>
+          </div>
+
+          {% if user.is_authenticated %}
+          <div class="collapse" id="replyBox{{comment.sno}}">
+            <div class="card bg-back card-body my-2">
+              <form action="/blog/postComment/" method="post">
+              {% csrf_token %}
+                <div class="mb-3">
+                  <textarea class="form-control bg-transparent subtleBorder text-white" name="comment" rows="3" placeholder="Your reply here."></textarea>
+                  <input type="hidden" name="parentSno" value="{{comment.sno}}">
+                </div>
+                <input type="hidden" name="postSno" value="{{post.sno}}">
+                <button type="submit" class="btn btn-sm px-3 rounded-pill fw-500 btn-success">Submit →</button>
+              </form>
             </div>
+          </div>
+          {% endif %}
 
-            <!-- recommended post -->
-            <div class="mb-4">
-                <h3
-                    style="border-bottom: dashed 3px #4c6d8f"
-                    class="d-inline pb-1 fs-5"
-                >
-                    Recommended:
-                </h3>
-                <div class="mt-3">
-                    {% for recommend in recommended %}
-                    <a
-                        class="
-                            d-flex
-                            align-items-center
-                            py-3
-                            px-3
-                            rounded-3
-                            bg-card
-                            mb-2
-                        "
-                        href="/blog/{{recommend.slug}}"
-                    >
-                        <i
-                            class="
-                                bi bi-arrow-right-circle-fill
-                                pe-3
-                                fs-5
-                                text-warning
-                            "
-                        ></i>
-                        <div>
-                            <p class="mb-0 fw-500 text-white">
-                                {{recommend.title}}
-                            </p>
-                            <small class="textCol"
-                                ><span class="badge bg-secondary"
-                                    >{{recommend.timeStamp|date:"M, Y"}}</span
-                                >
-                                <span class="badge bg-secondary"
-                                    >{{recommend.category|capfirst}}</span
-                                ></small
-                            >
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
+          <!-- Replies -->
+
+          <div class="replies">
+            {% load extras %}
+            {% for reply in repDict|get_val:comment.sno %}
+            <div class="py-2 ps-2 mt-3 ms-2 replyChild">
+              <div class="d-flex align-items-center">
+                <img src="https://gravatar.com/avatar/{{ reply.user.email|md5 }}?d=wavatar" class="me-2 rounded-circle" alt="{{reply.user.username}}" class="rounded-circle" width="35px">
+                <small><b class="textCol">{{reply.user.username|capfirst}}</b></small>&nbsp; • &nbsp;<small class="fw-500 textCol">{{comment.timeStamp|date:"d M, Y"}}</small>
+              </div>
+    
+              <div class="d-flex align-items-center pt-2">
+                <p class="mb-0 mainText">{{reply.comment|capfirst}}</p>
+              </div>
             </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+    </main>
 
-            <div class="position-sticky" style="top: 1rem">
-                <!-- categories -->
-                <div class="mb-4">
-                    <h3
-                        style="border-bottom: dashed 3px #4c6d8f"
-                        class="d-inline pb-1 fs-5"
-                    >
-                        All Topics:
-                    </h3>
-                    <div class="mt-3">
-                        <p class="mb-0" style="line-height: 1.8em">
-                            {% for topic in topics %}
-                            <a href="/blog/{{topic.title}}"
-                                ><span class="badge bg-success"
-                                    >{{topic.title|capfirst}}</span
-                                ></a
-                            >
-                            {% endfor %}
-                        </p>
-                    </div>
-                </div>
+    <!-- sidebar -->
+    <aside class="col-md-4 sideBar ps-3 mb-3">
 
-                <!-- advertisement orbitgadget_sidebar2 -->
-                <div class="mb-4">
-                    <ins
-                        class="adsbygoogle"
-                        style="display: block"
-                        data-ad-client="ca-pub-7112659924280416"
-                        data-ad-slot="7196768780"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"
-                    ></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
-
-                <!-- share icons -->
-                <div class="mb-4">
-                    <h3
-                        style="border-bottom: dashed 3px #4c6d8f"
-                        class="d-inline pb-1 fs-5"
-                    >
-                        Share:
-                    </h3>
-                    <div
-                        class="
-                            d-flex
-                            justify-content-between
-                            align-items-center
-                            flex-wrap
-                            pt-3
-                        "
-                    >
-                        <a
-                            class="pb-2 pe-2"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}"
-                            target="_blank"
-                            ><span class="badge bg-primary fs-6"
-                                ><i class="bi bi-facebook pe-2"></i>Share</span
-                            ></a
-                        >
-
-                        <a
-                            class="pb-2 pe-2"
-                            href="https://twitter.com/intent/tweet?url=https://orbitgadget.com/blog/{{post.slug}}&text="
-                            target="_blank"
-                            ><span class="badge bg-info fs-6"
-                                ><i class="bi bi-twitter pe-2"></i>Tweet</span
-                            ></a
-                        >
-
-                        <a
-                            class="pb-2 pe-2"
-                            href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            ><span class="badge bg-success fs-6"
-                                ><i class="bi bi-whatsapp pe-2"></i>Share</span
-                            ></a
-                        >
-
-                        <a
-                            class="pb-2 pe-2"
-                            href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}"
-                            target="_blank"
-                            ><span class="badge bg-danger fs-6"
-                                ><i class="bi bi-telegram pe-2"></i>Share</span
-                            ></a
-                        >
-                    </div>
-                </div>
+        <!-- user details -->
+        {% if request.user.is_authenticated %}
+        <div class="mb-4">
+          <div class="alert py-4" role="alert" style="background-color: #004173;">
+            <h4 class="text-center text-white">Hello {{request.user|capfirst}}!</h4>
+            <p class="text-center mainText my-3">
+              <span class="badge bg-success"><i class="bi bi-person-circle pe-1"></i>PROFILE</span>
+              <span class="badge bg-success"><i class="bi bi-bell-fill pe-1"></i>NOTIFICATIONS</span>
+              <span class="badge bg-success"><i class="bi bi-chat-dots-fill pe-1"></i>COMMUNITY</span>
+            </p>
+            <p class="mb-0 pt-3 text-center" style="border-top: dashed 2px var(--subtleBorder)">
+              <i class="bi bi-star-fill pe-2 text-warning"></i>Be a Supporter
+            </p>
+          </div>
+        </div>
+        {% else %}
+        <!-- ask for log in -->
+        <div class="mb-4">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+            <div class="alert py-4" role="alert" style="background-color: #054b16;">
+              <h4 class="text-center text-white">LOG IN</h4>
+              <p class="text-center mainText mb-0">Get access to <span class="badge bg-primary"><i class="bi bi-star-fill pe-1"></i>member</span> only articles, discussions, community and much more.</p>
             </div>
-        </aside>
-    </div>
+          </a>
+        </div>
+        {% endif %}
+
+        <!-- advertisement orbitgadget sidebar1 -->
+        <div class="mb-4">
+          <ins class="adsbygoogle sideAd"
+              style="display:block"
+              data-ad-client="ca-pub-7112659924280416"
+              data-ad-slot="9885391743"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
+        <!-- recommended post -->
+        <div class="mb-4">
+          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">Recommended:</h3>
+          <div class="mt-3">
+            {% for recommend in recommended %}
+            <a class="d-flex align-items-center py-3 px-3 rounded-3 bg-card mb-2" href="/blog/{{recommend.slug}}">
+              <i class="bi bi-arrow-right-circle-fill pe-3 fs-5 text-warning"></i>
+              <div>
+                <p class="mb-0 fw-500 text-white">{{recommend.title}}</p>
+                <small class="textCol"><span class="badge bg-secondary">{{recommend.timeStamp|date:"M, Y"}}</span> <span class="badge bg-secondary">{{recommend.category|capfirst}}</span></small>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+
+      <div class="position-sticky" style="top: 1rem;">
+        <!-- categories -->
+        <div class="mb-4">
+          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">All Topics:</h3>
+          <div class="mt-3">
+            <p class="mb-0" style="line-height: 1.8em;">
+              {% for topic in topics %}
+                <a href="/blog/{{topic.title}}"><span class="badge bg-success">{{topic.title|capfirst}}</span></a>
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+
+        <!-- advertisement orbitgadget_sidebar2 -->
+        <div class="mb-4">
+          <ins class="adsbygoogle"
+              style="display:block"
+              data-ad-client="ca-pub-7112659924280416"
+              data-ad-slot="7196768780"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
+        <!-- share icons -->
+        <div class="mb-4">
+          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">Share: </h3>
+          <div class="d-flex justify-content-between align-items-center flex-wrap pt-3">
+            <a class="pb-2 pe-2" href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><span class="badge bg-primary fs-6"><i class="bi bi-facebook pe-2"></i>Share</span></a>
+
+            <a class="pb-2 pe-2" href="https://twitter.com/intent/tweet?url=https://orbitgadget.com/blog/{{post.slug}}&text=" target="_blank"><span class="badge bg-info fs-6"><i class="bi bi-twitter pe-2"></i>Tweet</span></a>
+
+            <a class="pb-2 pe-2" href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><span class="badge bg-success fs-6"><i class="bi bi-whatsapp pe-2"></i>Share</span></a>
+
+            <a class="pb-2 pe-2" href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><span class="badge bg-danger fs-6"><i class="bi bi-telegram pe-2"></i>Share</span></a>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+  </div>
 </div>
 
 {% endblock body %}
