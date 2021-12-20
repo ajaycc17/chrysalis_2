@@ -39,15 +39,15 @@
                 </p>
                 <div class="d-block mx-3">
                     <form method="get" action="/search/" class="d-flex mb-3">
-                        <input type="search" class="form-control rounded-0 border-0" name="query" id="query" placeholder="Search for articles, guides, tutorials..." aria-label="Search">
+                        <input type="search" class="form-control rounded-2 border-0" name="query" id="query" placeholder="Search for articles, guides, tutorials..." aria-label="Search">
                     </form>
                 </div>
                 <p class="mb-0">
                     <a href="/blog/topics" class="my-2 me-2">
-                        <button type="button" class="my-2 btn btn-sm btn-success rounded-0 fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Topics</button>
+                        <button type="button" class="my-2 btn btn-sm btn-success rounded-2 fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Topics</button>
                     </a>
                     <a href="/blog/how-to" class="my-2">
-                        <button type="button" class="my-2 btn btn-sm btn-warning rounded-0 fw-500 px-3"><i class="bi bi-question-circle-fill pe-1"></i> How-To</button>
+                        <button type="button" class="my-2 btn btn-sm btn-warning rounded-2 fw-500 px-3"><i class="bi bi-question-circle-fill pe-1"></i> How-To</button>
                     </a>
                 </p>
             </div>
@@ -67,19 +67,19 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for post in allPosts %}
             <article class="col">
-                <div class="card h-100 shadow bg-card">
-                    <a href="{{post.slug}}">
+                <div class="card h-100 shadow bg-nav">
+                    <a href="/blog/{{post.slug}}">
                         <img src="{{post.thumbnail.url}}" alt="{{post.title}}">
                     </a>
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <a href="/blog/{{post.slug}}">
-                                <h3 class="fs-5 pb-2 mainText">{{post.title}}</h3>
+                                <h3 class="fs-5 pb-2 white">{{post.title}}</h3>
                             </a>
-                            <div class="pb-3 d-flex justify-content-between">
-                                <small class="boldText fw-500"><i class="bi bi-clock-history pe-1"></i> <span class="border-bottom border-2 border-info">Updated on:</span> {{post.timeStamp|date:"d M, Y"}}</small>
+                            <div class="metaStrip d-flex justify-content-between">
+                                <small class="white fw-500"><i class="bi bi-clock-history pe-1 textSky"></i> {{post.timeStamp|date:"d M, Y"}}</small>
                                 <a href="/blog/{{post.category}}" class="d-flex">
-                                    <small class="boldText fw-500"><i class="bi bi-layers pe-1"></i> <span class="border-bottom border-2 border-warning">{{post.category|capfirst}}</span></small>
+                                    <small class="white fw-500"><i class="bi bi-layers pe-1 textSky"></i> {{post.category|capfirst}}</small>
                                 </a>
                             </div>
 
@@ -88,7 +88,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="/about">
                                 <div class="btn-group d-flex align-items-center">
-                                    <img class="me-2 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="32px" alt="{{post.author}}">
+                                    <img class="me-2 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}">
                                     <small class="boldText fw-500">{{post.author}}</small>
                                 </div>
                             </a>

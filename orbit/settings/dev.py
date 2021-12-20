@@ -35,5 +35,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'orbitgadget@gmail.com'
 
-with open('E:/Django Dev/email_pass.txt') as h:
-    EMAIL_HOST_PASSWORD = h.read().strip()
+# with open('E:/Django Dev/email_pass.txt') as h:
+#     EMAIL_HOST_PASSWORD = h.read().strip()

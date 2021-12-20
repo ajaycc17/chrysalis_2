@@ -20,10 +20,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     {% block schemaBlock %}{% endblock schemaBlock %}
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGXP7EE525"></script>
     <script>
@@ -44,17 +46,19 @@
   <body onload="cookieConsent()">
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-nav">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img src="{% static 'images/logo.svg' %}" alt="OrbitGadget" width="130">
+          <img src="{% static 'images/logo.svg' %}" alt="OrbitGadget" width="130" height="auto">
         </a>
-        <span class="ps-3 d-flex align-item-center fw-500 textCol place" style="border-left: dashed 2px #4c6d8f;">
+        <small class="ps-3 d-flex align-item-center fw-500 boldText place text-uppercase" style="border-left: solid 1px #94a3b8;">
           {% block place %}{% endblock place %}
-        </span>
+        </small>
 
-        <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span>
+            <i class="bi bi-list"></i>
+          </span>
         </button>
 
         <!-- logged in logo for mobile devices -->
@@ -62,7 +66,7 @@
         <div class="flex-shrink-0 dropdown ps-2 loggedIn">
           <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="userDetails" data-bs-toggle="dropdown" aria-expanded="false">
             {% load extras %}
-            <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" width="30px">
+            <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" width="30px" height="auto">
           </a>
           <ul class="dropdown-menu text-small userDrop" data-popper-placement="bottom-end" aria-labelledby="userDetails">
             <li><a class="dropdown-item disabled" href="#"><i class="bi bi-emoji-smile-fill pe-2"></i>Hello! {{request.user|capfirst|truncatechars:8}}</a></li>
@@ -77,10 +81,8 @@
 
         {% else %}
         <!-- Button to trigger login modal -->
-        <a class="boldText loggedIn ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
-          <li class="list-unstyled d-inline">
-            <i class="bi bi-person-circle fs-3 pe-1"></i>
-          </li>
+        <a class="white loggedIn ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+             <i class="bi bi-person-circle fs-3 pe-1"></i>
         </a>
         {% endif %}
 
@@ -106,52 +108,50 @@
                 <i class="bi bi-chat-dots pe-2"></i>Contact</a>
             </li>
 
-
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-compass pe-2"></i>More</a>
 
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2"></i>To-Do App</a></li>
-                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2"></i>Password Generator</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>To-Do App</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Password Generator</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/blog/cse"><i class="bi bi-cpu-fill pe-2"></i>Computer Science</a></li>
+                <li><a class="dropdown-item" href="/blog/cse"><i class="bi bi-cpu-fill pe-2 dropdown-icon"></i>Computer Science</a></li>
               </ul>
             </li>
           </ul>
         </div>
 
         <!-- logged in logo for desktop devices -->
-
         {% if user.is_authenticated %}
         <div class="flex-shrink-0 dropdown ps-2 loggedInDesk">
           <a href="#" class="d-flex align-items-center link-light text-decoration-none dropdown-toggle" id="userDetails" data-bs-toggle="dropdown" aria-expanded="false">
             {% load extras %}
-            <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" width="30px">
+            <img src="https://gravatar.com/avatar/{{ user.email|md5 }}?d=wavatar" class="rounded-circle" alt="{{user.username}}" class="rounded-circle" width="30px" height="auto">
             <small class="ps-2 pe-1">{{request.user|upper|truncatechars:8}}</small>
           </a>
           <ul class="dropdown-menu text-small userDrop" data-popper-placement="bottom-end" aria-labelledby="userDetails">
             <li><a class="dropdown-item" data-bs-toggle="modal" href="#edit2Modal">
-              <i class="bi bi-gear-wide-connected pe-2"></i>Edit Profile</a>
+              <i class="bi bi-gear-wide-connected pe-2 dropdown-icon"></i>Edit Profile</a>
             </li>
             <li><hr class="dropdown-divider" style="color:#fff" /></li>
-            <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
+            <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2 dropdown-icon"></i>Log out</a></li>
           </ul>
         </div>
 
         {% else %}
         <!-- Button to trigger login modal -->
-        <a class="boldText loggedInDesk ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+        <a class="blackText loggedInDesk signin-button px-3" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
           <li class="list-unstyled d-flex align-items-center">
-            <i class="bi bi-person-circle fs-4 pe-1"></i> <span class="fw-500 ps-1">Log In</span>
+            <span class="fw-500">Sign In</span>
           </li>
         </a>
         {% endif %}
 
       </div>
     </nav>
+    <div class="progress"></div>
 
     <!-- messages -->
-
     {% for message in messages %}
       {% ifnotequal message.tags "danger" %}
       <div class="alert alert-{{message.tags}} alert-dismissible fade show mb-0 text-center" role="alert">
@@ -167,10 +167,9 @@
     {% endfor %}
 
     <!-- login modal -->
-
     <div class="modal fade" id="loginmodal" aria-hidden="true" aria-labelledby="loginmodal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-card">
+        <div class="modal-content bg-blog">
           <div class="modal-header">
             <h5 class="modal-title" id="loginmodalTitle">Log In</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -178,12 +177,14 @@
           <div class="modal-body pb-0">
             <form method="post" action="/login/?next={{request.path}}">
               {% csrf_token %}
-              <div class="mb-3">
-                <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username" required/>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder=" " required/>
+                <label for="loginusername">Username</label>
               </div>
 
-              <div class="mb-3">
-                <input type="password" class="form-control" id="loginpass" name="loginpass"placeholder="Password" required/>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control mb-3" id="loginpass" name="loginpass" placeholder=" " required/>
+                <label for="loginpass">Password</label>
                 <div id="emailHelp" class="form-text d-flex justify-content-between mt-2">
                   <a class="boldText fw-500" href="/reset-password/?next={{request.path}}">Forgot Password?</a>
                   <a class="boldText fw-500" href="#" data-bs-toggle="modal" data-bs-target="#signupmodal" data-bs-dismiss="modal">Not a member?</a>
@@ -200,10 +201,9 @@
     </div>
 
     <!-- signup modal -->
-
     <div class="modal fade" id="signupmodal" aria-hidden="true" aria-labelledby="signupmodal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-card">
+        <div class="modal-content bg-blog">
           <div class="modal-header">
             <h5 class="modal-title" id="signupmodalTitle">Sign Up</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -211,30 +211,40 @@
           <div class="modal-body pb-0">
             <form method="post" action="/signup/?next={{request.path}}">
               {% csrf_token %}
-              <div class="mb-3">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required/>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder=" " required/>
+                <label for="username">Username</label>
               </div>
 
               <div class="row mb-3">
                 <div class="col">
-                  <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required/>
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="fname" name="fname" placeholder=" " required/>
+                    <label for="fname">First Name</label>
+                  </div>
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name"/>
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="lname" name="lname" placeholder=" "/>
+                    <label for="lname">Last Name</label>
+                  </div>
                 </div>
               </div>
 
-              <div class="mb-3">
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Your e-mail" required/>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder=" " required/>
+                <label for="email">Your email</label>
                 <div id="emailHelp" class="form-text boldText"> We'll never share your email with anyone else.</div>
               </div>
 
-              <div class="mb-3">
-                <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Enter Password" required/>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="pass1" name="pass1" placeholder=" " required/>
+                <label for="pass1">Password</label>
               </div>
 
-              <div class="mb-3">
-                <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Password" required/>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="pass2" name="pass2" placeholder=" " required/>
+                <label for="pass2">Confirm Password</label>
               </div>
 
               <div class="mb-3">
@@ -256,10 +266,9 @@
     </div>
     
     <!-- edit details modal -->
-
     <div class="modal fade" id="edit2Modal" aria-hidden="true" aria-labelledby="edit2ModalLabel" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-card">
+        <div class="modal-content bg-blog">
           <div class="modal-header">
             <h5 class="modal-title" id="edit2ModalLabel">Edit Profile</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -276,15 +285,22 @@
 
               <div class="row mb-3">
                 <div class="col">
-                  <input type="text" class="form-control" id="newfname" name="newfname" placeholder="First Name"/>
+                  <div class="form-floating">
+                  <input type="text" class="form-control" id="newfname" name="newfname" placeholder=" "/>
+                  <label for="newfname">First Name</label>
+                </div>
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" id="newlname" name="newlname" placeholder="New Last Name"/>
+                  <div class="form-floating">
+                  <input type="text" class="form-control" id="newlname" name="newlname" placeholder=" "/>
+                  <label for="newlname">Last Name</label>
+                </div>
                 </div>
               </div>
 
-              <div class="mb-3">
-                <input type="email" class="form-control" id="newemail" name="newemail" placeholder="New e-mail"/>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="newemail" name="newemail" placeholder=" "/>
+                <label for="newemail">Your email</label>
               </div>
 
               <div class="modal-footer px-0">
@@ -301,30 +317,33 @@
     </div>
 
     <!-- change password modal -->
-
     <div class="modal fade" id="edit2Modal2" aria-hidden="true" aria-labelledby="edit2ModalLabel2" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-card">
+        <div class="modal-content bg-blog">
           <div class="modal-header">
             <h5 class="modal-title" id="edit2Modal2">Change Password</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pb-0">
             <form method="post" action="/editpass/?next={{request.path}}">
-              <div class="mb-3">
+              <div class="form-floating mb-3">
                 <input class="form-control" type="text" name="editusername" value="{{request.user}}" readonly/>
+                <label for="editusername">Username</label>
               </div>
 
-              <div class="mb-3">
-                <input type="password" class="form-control" id="oldpass" name="oldpass" placeholder="Current Password" required/>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="oldpass" name="oldpass" placeholder=" " required/>
+                <label for="oldpass">Current Password</label>
               </div>
 
-              <div class="mb-3">
-                <input type="password" class="form-control" id="editpass1" name="editpass1" placeholder="New Password" required/>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="editpass1" name="editpass1" placeholder=" " required/>
+                <label for="editpass1">New Password</label>
               </div>
 
-              <div class="mb-3">
-                <input type="password" class="form-control" id="editpass2" name="editpass2" placeholder="Confirm Password" required/>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="editpass2" name="editpass2" placeholder=" " required/>
+                <label for="editpass2">Confirm Password</label>
               </div>
 
               <div class="modal-footer px-0">
@@ -342,7 +361,7 @@
 
     <!-- cookie toast -->
     <div id="cookiePack" class="position-fixed bottom-0 start-0 p-3 text-light" style="display: none">
-      <div id="liveToast" class="toast bg-card" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide='false'>
+      <div id="liveToast" class="toast bg-blog" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide='false'>
         <div class="toast-body">
             <div class="d-flex align-items-center">
               <img src="{% static 'images/cookie.png' %}" alt="Cookie" width="60px" class="me-3" style="height:60px !important">
@@ -359,32 +378,40 @@
     {% block body %}{% endblock body %}
 
     <!-- footer -->
-
-    <section class="fUpper container-fluid bg-card">
-      <div class="container py-3">
-        <div class="row py-2 text-light d-flex align-items-center">
-          <div class="col-md-8">
-            <h3 style="line-height: 1.7em;" class="fs-6 fw-500 mb-0">
-              <a  href="https://github.com/ajaycc17" target="_blank" rel="noopener noreferrer" class="text-warning">
-                <span class="text-warning border-bottom border-2 border-white">Contribute</span>
-              </a> to make this site more awesome →
-            </h3>
+    <footer class="container-fluid bg-nav">
+      <section class="fUpper bg-nav">
+        <div class="container pt-3">
+          <div class="row py-2 text-light d-flex align-items-center">
+            <div class="col-md-8">
+              <h3 style="line-height: 1.7em;" class="fs-6 fw-500 mb-0">
+                <a  href="https://github.com/ajaycc17" target="_blank" rel="noopener noreferrer" class="text-warning">
+                  <span class="text-warning border-bottom border-2 border-white">Contribute</span>
+                </a> to make this site more awesome →
+              </h3>
+            </div>
+            <div class="shareSec col-md-4 d-flex align-items-center justify-content-end">
+              <a href="https://twitter.com/ajaycc17" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-twitter fs-5 contIcon2" ></i>
+              </a>
+              <a href="https://instagram.com/orbitgadget" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-instagram fs-5 ps-4 contIcon1"></i>
+              </a>
+              <a href="/site-blueprint" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-globe2 fs-5 ps-4 contIcon1"></i>
+              </a>
+              <a href="https://www.youtube.com/channel/UCC8-qS8viHF1cqiG0MKbCGQ" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-youtube fs-5 ps-4 contIcon1"></i>
+              </a>
+              <a href="https://github.com/ajaycc17" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-github fs-5 ps-4 contIcon2" ></i>
+              </a>
+            </div>
           </div>
-          <div class="shareSec col-md-4 d-flex align-items-center justify-content-end">
-            <a href="/site-blueprint" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-globe2 fs-5 contIcon1"></i>
-            </a>
-            <a href="https://github.com/ajaycc17" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-github fs-5 ps-4 contIcon2" ></i>
-            </a>
-          </div>
+          <hr class="featurette-divider text-light"></hr>
         </div>
-      </div>
-    </section>
-
-    <footer class="container-fluid bg-back">
-      <div class="container pt-3">
-        <div class="row pt-4 text-light">
+      </section>
+      <div class="container">
+        <div class="row pt-3 text-light">
           <div class="col-6 col-md-3">
             <h3 class="fw-500 text-uppercase">Site Links</h3>
             <ul class="footerMenu">
@@ -451,9 +478,8 @@
     </footer>
 
     <!-- scroll to top -->
-
     <div id="scTop" onclick="toTop()">
-      <i class="bi bi-arrow-up-circle-fill fs-1 lightText"></i>
+      <i class="bi bi-arrow-up-circle-fill fs-1 textSky"></i>
     </div>
 
     <script>
@@ -477,8 +503,21 @@
   </body>
 
   <!-- JS block -->
-
   {% block js %}{% endblock js %}
+
+  <script>
+    var h = document.documentElement,
+    b = document.body,
+    st = 'scrollTop',
+    sh = 'scrollHeight',
+    progress = document.querySelector('.progress'),
+    scroll;
+
+    document.addEventListener('scroll', function() {
+      scroll = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+      progress.style.setProperty('--scroll', scroll + '%');
+    });
+  </script>
 
   <!-- cookie notice -->
   <script>
@@ -507,7 +546,6 @@
 
   <!-- Prism -->
   <script src="{% static 'js/prism.js' %}"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
 </html>

@@ -39,7 +39,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #061422;
+	background: #111827;
 }
 
 /* Inline code */
@@ -125,6 +125,7 @@ pre[class*="language-"] {
 
 div.code-toolbar {
 	position: relative;
+	margin-bottom: 1rem;
 }
 
 div.code-toolbar > .toolbar {
