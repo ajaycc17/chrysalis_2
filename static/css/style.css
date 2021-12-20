@@ -181,7 +181,7 @@ body {
     border-left: solid 3px var(--bg-card);
 }
 .mce-toc {
-    background-color: var(--bg-card);
+    background-color: var(--bg-nav);
     padding: 10px;
     margin-bottom: 1.2rem;
 }
