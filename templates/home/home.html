@@ -35,7 +35,7 @@
 {% block body %}
 
 <!-- hero section -->
-<section class="py-3 container-fluid bg-nav">
+<section class="py-3 container-fluid bg-back-hero">
     <div class=" py-3">
         <div class="container d-flex flex-column flex-md-row">
             <div class="col-md-6 text-md-start text-center d-flex flex-column justify-content-center">
@@ -236,3 +236,10 @@
     </div>
 </section>
 {% endblock body %}
+
+{% block js %}
+<script>
+    var element = document.getElementById("place");
+    element.style.setProperty("display", "none", "important")
+</script>
+{% endblock js %}

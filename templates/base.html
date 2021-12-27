@@ -46,12 +46,12 @@
   <body onload="cookieConsent()">
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-nav-real">
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand me-0" href="/">
           <img src="{% static 'images/logo.svg' %}" alt="OrbitGadget" width="130" height="auto">
         </a>
-        <small class="ps-3 d-flex align-item-center fw-500 boldText place text-uppercase" style="border-left: solid 1px #94a3b8;">
+        <small id="place" class="ps-3 ms-3 d-flex align-item-center fw-500 foot-boldText place text-uppercase border-start border-secondary">
           {% block place %}{% endblock place %}
         </small>
 
@@ -60,6 +60,17 @@
             <i class="bi bi-list"></i>
           </span>
         </button>
+        
+        <!-- dark mode toggle -->
+        <div class="theme-switch-wrapper ps-md-3 ms-1 ms-md-3 d-flex align-item-center">
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round d-flex justify-content-between align-items-center">
+              <i class="dark-icons light ps-1 bi bi-brightness-high"></i>
+              <i class="dark-icons pe-1 bi bi-moon"></i>
+            </div>
+          </label>
+        </div>
 
         <!-- logged in logo for mobile devices -->
         {% if user.is_authenticated %}
@@ -81,7 +92,7 @@
 
         {% else %}
         <!-- Button to trigger login modal -->
-        <a class="white loggedIn ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
+        <a class="nav-white loggedIn ps-2" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
              <i class="bi bi-person-circle fs-3 pe-1"></i>
         </a>
         {% endif %}
@@ -137,7 +148,6 @@
             <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2 dropdown-icon"></i>Log out</a></li>
           </ul>
         </div>
-
         {% else %}
         <!-- Button to trigger login modal -->
         <a class="blackText loggedInDesk signin-button px-3" href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
@@ -146,7 +156,6 @@
           </li>
         </a>
         {% endif %}
-
       </div>
     </nav>
     <div class="progress"></div>
@@ -361,7 +370,7 @@
 
     <!-- cookie toast -->
     <div id="cookiePack" class="position-fixed bottom-0 start-0 p-3 text-light" style="display: none">
-      <div id="liveToast" class="toast bg-blog" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide='false'>
+      <div id="liveToast" class="toast bg-cookie" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide='false'>
         <div class="toast-body">
             <div class="d-flex align-items-center">
               <img src="{% static 'images/cookie.png' %}" alt="Cookie" width="60px" class="me-3" style="height:60px !important">
@@ -378,8 +387,8 @@
     {% block body %}{% endblock body %}
 
     <!-- footer -->
-    <footer class="container-fluid bg-nav">
-      <section class="fUpper bg-nav">
+    <footer class="container-fluid bg-nav-real">
+      <section class="fUpper bg-nav-real">
         <div class="container pt-3">
           <div class="row py-2 text-light d-flex align-items-center">
             <div class="col-md-8">
@@ -481,7 +490,8 @@
     <div id="scTop" onclick="toTop()">
       <i class="bi bi-arrow-up-circle-fill fs-1 textSky"></i>
     </div>
-
+    
+    <!-- scroll to top JS-->
     <script>
       let sTop = document.getElementById('scTop');
       document.onscroll = scrollFunc;
@@ -505,6 +515,7 @@
   <!-- JS block -->
   {% block js %}{% endblock js %}
 
+  <!-- reading progress bar -->
   <script>
     var h = document.documentElement,
     b = document.body,
@@ -541,6 +552,38 @@
             toast.show()
           }
       }, 2000);
+    }
+  </script>
+
+  <!-- dark mode -->
+  <!-- reference: https://dev.to/ananyaneogi/create-a-dark-light-mode-switch-with-css-variables-34l8 -->
+  <script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }    
+    }
+    toggleSwitch.addEventListener('change', switchTheme, false);
+    // store user preference
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }    
+    }
+    // read user preference
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      if (currentTheme === 'dark') {
+          toggleSwitch.checked = true;
+      }
     }
   </script>
 

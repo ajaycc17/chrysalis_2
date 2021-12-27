@@ -83,7 +83,7 @@
           {{post.content|safe|truncatechars:150}}
         </div>
   
-        <div class="spaceGrot d-flex flex-column flex-sm-row justify-content-between">
+        <div class="spaceGrot fw-500 d-flex flex-column flex-sm-row justify-content-between">
           <div>
             <small class="text-warning"><img class="me-1 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}"> {{post.author}}</small>
             <small class="ms-1 text-warning">• <span class="ms-1">{{post.timeStamp|date:"d M, Y"}}</span></small>
@@ -181,7 +181,7 @@
       <!-- comments section -->
 
       <section class="comments">
-        <div class="d-flex align-items-center justify-content-between py-3" style="border-bottom: dashed 2px #4c6d8f;border-top: dashed 2px #4c6d8f;">
+        <div class="d-flex align-items-center justify-content-between py-3" style="border-bottom: dashed 2px var(--subtleBorder);border-top: dashed 2px var(--subtleBorder);">
           <h3 class="fs-4 mb-0"><i class="textCol bi bi-chat-dots-fill"></i> {{comments.count}} Comments</h3>
           <a href="/site-terms">
             <div class="d-flex align-items-center textCol">
@@ -321,7 +321,7 @@
 
         <!-- recommended post -->
         <div class="mb-4">
-          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">Recommended:</h3>
+          <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Recommended:</h3>
           <div class="mt-3">
             {% for recommend in recommended %}
             <a class="d-flex align-items-center py-3 px-3 topic-card bg-blog mb-2" href="/blog/{{recommend.slug}}">
@@ -338,7 +338,7 @@
       <div class="position-sticky" style="top: 4.5rem;">
         <!-- categories -->
         <div class="mb-4">
-          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">All Topics:</h3>
+          <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">All Topics:</h3>
           <div class="mt-3">
             <p class="mb-0" style="line-height: 1.8em;">
               {% for topic in topics %}
@@ -363,7 +363,7 @@
 
         <!-- share icons -->
         <div class="mb-4">
-          <h3 style="border-bottom: dashed 3px #4c6d8f;" class="d-inline pb-1 fs-5">Share: </h3>
+          <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Share: </h3>
           <div class="d-flex justify-content-between align-items-center flex-wrap pt-3">
             <a class="pb-2 pe-2" href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><span class="badge bg-primary fs-6"><i class="bi bi-facebook pe-2"></i>Share</span></a>
 
@@ -371,7 +371,7 @@
 
             <a class="pb-2 pe-2" href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><span class="badge bg-success fs-6"><i class="bi bi-whatsapp pe-2"></i>Share</span></a>
 
-            <a class="pb-2 pe-2" href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><span class="badge bg-light text-dark fs-6"><i class="bi bi-telegram pe-2"></i>Share</span></a>
+            <a class="pb-2 pe-2" href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><span class="badge bg-secondary fs-6"><i class="bi bi-telegram pe-2"></i>Share</span></a>
           </div>
         </div>
 
