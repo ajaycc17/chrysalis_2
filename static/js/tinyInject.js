@@ -1,6 +1,8 @@
 var script = document.createElement('script');
 script.type = 'text/javascript';
-script.src= "https://cdn.tiny.cloud/1/w0dnoedqus44dang0u1zlt62jdrg5u0ezxrm9ala73p83qjv/tinymce/5/tinymce.min.js"
+script.referrerPolicy= "origin";
+script.src= "https://cdn.tiny.cloud/1/w0dnoedqus44dang0u1zlt62jdrg5u0ezxrm9ala73p83qjv/tinymce/5/tinymce.min.js";
+
 document.head.appendChild(script);
 
 script.onload = function () {
