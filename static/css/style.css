@@ -653,3 +653,56 @@ textarea:-webkit-autofill:hover {
         right: 0 !important;
     }
 }
+/* drumkit */           
+.w {
+background-image: url('/static/images/tom1.png');
+}
+.a {
+background-image: url('/static/images/tom2.png');
+}
+.s {
+background-image: url('/static/images/tom3.png');
+}
+.d {
+background-image: url('/static/images/tom4.png');
+}
+.j {
+background-image: url('/static/images/snare.png');
+}
+.k {
+background-image: url('/static/images/crash.png');
+}
+.l {
+background-image: url('/static/images/kick.png');
+}
+.set {
+margin: 3% auto 5%;
+}
+.game-over {
+background-color: red;
+opacity: 0.8;
+}
+.pressed {
+box-shadow: 0 3px 4px 0 #DBEDF3;
+opacity: 0.5;
+}
+.red {
+color: red;
+}
+.drum {
+outline: none;
+border: 7px solid var(--bg-nav);
+font-size: 2.2rem;
+font-family: 'Space Grotesk', cursive;
+line-height: 2;
+font-weight: 900;
+color: var(--bs-yellow);
+text-shadow: 3px 0 #000;
+border-radius: 15px;
+display: inline-block;
+width: 5rem;
+height: 5rem;
+text-align: center;
+margin: 10px;
+background-color: var(--nav-white);
+}

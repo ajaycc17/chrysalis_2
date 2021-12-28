@@ -53,3 +53,6 @@ def passGen(request):
 
     context = {'password': password}
     return render(request, 'project/passwordGenerator.html', context)
+
+def drumkit(request):
+    return render(request, 'project/drumkit.html')
