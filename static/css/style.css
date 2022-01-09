@@ -40,6 +40,17 @@
     --toggle-dark: #7871a7;
     --dark-slider: #395271;
 }
+
+/* new */
+.carousel-caption{
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .carousel-caption{
+        text-align: left !important;
+    }
+}
+/* end of new */
 /* dark mode slider */
 .theme-switch {
     display: inline-block;
@@ -98,14 +109,16 @@ input:checked + .slider:before {
     --foot-textCol: #cbd5e1;
     --foot-boldText: #cbd5e1;
     --mainText: #e5e7eb;
-    --blackText: #0f172a;
-    --bg-back: #1f2937;
+    --blackText: #46474D;
+    /* --bg-back: #1f2937; */
+    --bg-back: #27272B;
     --text-sky: #38bdf8;
     --text-nav-sky: #38bdf8;
     --subtleBorder: #6b7280;
     --bs-yellow: #ffd800;
     --bg-card: #4b5563;
-    --bg-blog: #374151;
+    /* --bg-blog: #374151; */
+    --bg-blog: #3A3B40;
     --bg-lime: #84cc16;
     --bg-darkblue: #1f364d;
     --bg-darkred: #dc2626;
@@ -118,8 +131,8 @@ input:checked + .slider:before {
     --headCol: #00caf4;
     --dark-success: #365314;
     --light-success: #3f6212;
-    --progess-orange: #ff5000;
-    --progress-yellow: #fff500;
+    --progess-orange: #5083ce;
+    --progress-yellow: #78e47b;
     --success-shadow: #4d7c0f;
     --warning-shadow: #ff8800;
     --code-back: #1a2f5e;
@@ -179,14 +192,10 @@ input:checked + .slider:before {
     background-repeat: no-repeat;
     position: fixed;
     width: 100%;
-    height: 2px;
+    height: 5px;
     z-index: 1;
 }
 .metaStrip {
-    background-color: var(--bg-blog);
-    margin-right: -1rem;
-    margin-left: -1rem;
-    padding: 0.5rem 1rem;
     margin-bottom: 1rem;
 }
 h1,
@@ -195,7 +204,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Space Grotesk", sans-serif;
+    /* font-family: "Space Grotesk", sans-serif; */
+    font-family: 'EB Garamond', serif;
 }
 .signin-button {
     padding-top: 4px;
@@ -244,6 +254,9 @@ button.rounded-2.btn-warning {
 }
 .bg-back {
     background-color: var(--bg-back);
+}
+.bg-lightSky {
+    background-color: rgb(187, 216, 255);
 }
 .bg-back-hero {
     background: linear-gradient(
@@ -405,7 +418,9 @@ a,
 blockquote,
 li,
 p {
-    font-family: Inter, sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
 }
 h1 {
     font-weight: 600;
@@ -454,7 +469,7 @@ h5 {
 .og-content li {
     line-height: 1.6em;
 }
-.container-page li + li,
+.container-page.content li + li,
 .og-content li + li {
     padding-top: 10px;
 }
@@ -475,12 +490,13 @@ a {
 a:hover {
     color: var(--link);
 }
-.container-page a,
+.container-page.content a,
 .og-content a {
     font-weight: 500;
     color: var(--link);
     border-bottom: solid 1px var(--textCol);
 }
+/* .container-page{} */
 .container-page p,
 .og-content p {
     line-height: 1.6em;

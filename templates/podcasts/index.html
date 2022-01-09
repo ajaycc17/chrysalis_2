@@ -1,0 +1,114 @@
+{% extends 'base.html' %} 
+{% block title %}Podcasts{% endblock title %} 
+{% block blogactive %} active {% endblock blogactive %}
+{% block place %}Podcasts{% endblock place %}
+{% block metaDesc %}The Psi-Comm Podcast, powered by Chrysalis, IISER Bhopal, is where we discuss and promote interdisciplinary research in all scientific realms and highlight their societal implications. New episodes on the second Sunday of every month!{% endblock metaDesc %}
+{% block metatags %}/podcasts/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+    {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home",
+        "item": "https://orbitgadget.com/"  
+    },{
+        "@type": "ListItem", 
+        "position": 2, 
+        "name": "Podcasts",
+        "item": "https://orbitgadget.com/podcasts/"  
+    }]
+    }
+</script>
+{% endblock schemaBlock %}
+{% load static %}
+{% block body %}
+
+<div class="pb-4 bg-back">
+
+    <!-- header -->
+
+    <section class="py-3 text-center container-fluid bg-blog">
+        <div class="py-lg-5 py-3 mx-2">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fs-3">Psi-Comm Podcasts</h1>
+                <p class="textCol fw-500 px-3">
+                    The Psi-Comm Podcast, powered by Chrysalis, IISER Bhopal, is where we discuss and promote interdisciplinary research in all scientific realms and highlight their societal implications. New episodes on the second Sunday of every month!
+                </p>
+                <p class="mb-0">
+                    <a href="/blog/topics" class="my-2 me-2">
+                        <button type="button" class="my-2 btn btn-sm btn-success rounded-2 fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Topics</button>
+                    </a>
+                    <a href="/blog/how-to" class="my-2">
+                        <button type="button" class="my-2 btn btn-sm btn-warning rounded-2 fw-500 px-3"><i class="bi bi-question-circle-fill pe-1"></i> How-To</button>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- post list -->
+
+    <main class="album pt-4 pb-5">
+        <div class="container d-flex justify-content-between mb-4">
+            <div id="postCounter" class="d-flex align-items-center">
+                <i class="d-flex fs-5 bi bi-check-circle-fill text-success pe-2"></i>
+                <h3 class="fs-6 text-uppercase mb-0">{{total}}+ Articles & Guides</h3>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for post in allPosts %}
+            <article class="col">
+                <div class="card h-100 topic-card" style="background-color: #26448d">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex mb-2 align-items-center">
+                                <img src="{% static 'images/play.svg' %}" width="60px" height="auto" class="img-fluid bg-lightSky rounded-circle p-1" alt="{{cat.title}}">
+                                <h5 class="card-title text-light mb-0 ms-3">{{post.title|capfirst}}</h5>
+                            </div>
+                            <div class="mt-3 text-light">
+                                {{post.content|safe|truncatechars:60}}
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="d-flex align-items-center text-light"><i class="bi bi-play-circle pe-2"></i> Psi-Comm</span>
+                            <a href="/podcasts/{{post.slug}}">
+                                <i class="bi bi-play-circle-fill fs-3 text-light"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <!-- pagination -->
+
+    <aside class="container d-flex justify-content-between mb-3">
+    {% if prev %}
+        <a class="text-white" href="/podcasts?page={{prev}}">
+            <button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3">← Previous</button>
+        </a>
+    {% else %}
+        <a class="text-white" href="#">
+            <button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3" disabled>← Previous</button>
+        </a>
+    {% endif %}
+
+    {% if nxt %}
+        <a class="text-white" href="/podcasts?page={{nxt}}">
+            <button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3">Next →</button>
+        </a>
+    {% else %}
+        <a class="text-white" href="#">
+            <button type="button" class="btn btn-sm btn-success rounded-pill fw-500 px-3" disabled>Next →</button>
+        </a>
+    {% endif %}
+    </aside>
+</div>
+{% endblock body %}

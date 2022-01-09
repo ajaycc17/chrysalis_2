@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'blog.apps.BlogConfig',
+    'podcasts.apps.PodcastsConfig',
     'django.contrib.sitemaps',
     'django.contrib.sites',
     'widget_tweaks',

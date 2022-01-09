@@ -64,9 +64,7 @@
 {% block body %}
 <div class="container py-4">
   <div class="row g-4">
-
     <!-- post content section -->
-
     <div>
       <!-- header -->
       <nav style="--bs-breadcrumb-divider: '•';" aria-label="breadcrumb">
@@ -77,7 +75,7 @@
         </ol>
       </nav>
 
-      <h1 class="fs-3">{{post.title}}</h1>
+      <h1 class="fs-1">{{post.title}}</h1>
 
       <div class="col-md-8">
         <div class="spaceGrot">
@@ -307,19 +305,6 @@
         </div>
         {% endif %}
 
-        <!-- advertisement orbitgadget sidebar1 -->
-        <div class="mb-4">
-          <ins class="adsbygoogle sideAd"
-              style="display:block"
-              data-ad-client="ca-pub-7112659924280416"
-              data-ad-slot="9885391743"
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-
         <!-- recommended post -->
         <div class="mb-4">
           <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Recommended:</h3>
@@ -347,19 +332,6 @@
               {% endfor %}
             </p>
           </div>
-        </div>
-
-        <!-- advertisement orbitgadget_sidebar2 -->
-        <div class="mb-4">
-          <ins class="adsbygoogle"
-              style="display:block"
-              data-ad-client="ca-pub-7112659924280416"
-              data-ad-slot="7196768780"
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
         </div>
 
         <!-- share icons -->

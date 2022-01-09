@@ -11,5 +11,5 @@ urlpatterns = [
     path('pikachoo-admin/', admin.site.urls),
     path('', include(('home.urls', 'home'), namespace='home')),
     path('blog/', include('blog.urls')),
-    path('projects/', include('project.urls')),
+    path('podcasts/', include('podcasts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

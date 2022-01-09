@@ -3,6 +3,7 @@ import urllib
 import math
 from blog.models import BlogPost, Topic
 from home.models import Contact
+from podcasts.models import Episodes
 from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -70,8 +71,20 @@ def home(request):
     postCount = dict(count)
     allPosts = BlogPost.objects.all().filter(
         publish=True).order_by('-timeStamp')[:6]
-    context = {'allPosts': allPosts,
-               'postCount': postCount, 'topics': categories}
+    Recommend = BlogPost.objects.all().filter(
+        publish=False).order_by('-timeStamp')[:3]
+    allPodcasts = Episodes.objects.all().filter(publish=True).order_by('-timeStamp')[:6]
+
+    post = allPodcasts.first()
+    add_string1 = '/embed'
+    add_string2 = '?utm_source=generator'
+    result = post.anchor_link.find('spotify.com')
+    length_link = len('spotify.com')
+    add_embed = result + length_link
+    res = post.anchor_link[ : add_embed] + add_string1 + post.anchor_link[add_embed : ] + add_string2
+
+    context = {'allPosts': allPosts, 'allPodcasts': allPodcasts,
+               'postCount': postCount, 'topics': categories, 'embedPod': res, 'recommend': Recommend}
     return render(request, 'home/home.html', context)
 
 

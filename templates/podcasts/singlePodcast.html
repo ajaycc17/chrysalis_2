@@ -1,0 +1,201 @@
+{% extends 'base.html' %} 
+{% block title %}{{post.title}}{% endblock title %} 
+{% block blogactive %} active {% endblock blogactive %}
+{% block place %}Podcast{% endblock place %}
+{% block metaDesc %}{{post.content|safe|truncatechars:157}}{% endblock metaDesc %}
+{% block metatags %}/blog/{{post.slug}}/{% endblock metatags %}
+{% block schemaBlock %}
+<script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://orbitgadget.com/blog/{{post.slug}}/"
+    },
+    "headline": "{{post.title|title}}",
+    "description": "{{post.content|safe|truncatechars:157}}",
+    "image": "{{post.thumbnail.url}}",  
+    "author": {
+      "@type": "Person",
+      "name": "Ajay Choudhury",
+      "url": "https://orbitgadget.com/about/"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "OrbitGadget",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://api.orbitgadget.com/orbitapi/staticfiles/images/logo.svg"
+      }
+    },
+    "datePublished": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}",
+    "dateModified": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}"
+  },
+  {
+    "@context": "https://schema.org/", 
+    "@type": "BreadcrumbList", 
+    "itemListElement": [{
+      "@type": "ListItem", 
+      "position": 1, 
+      "name": "Home",
+      "item": "https://orbitgadget.com/"  
+    },{
+      "@type": "ListItem", 
+      "position": 2, 
+      "name": "Blog",
+      "item": "https://orbitgadget.com/blog/"  
+    },{
+      "@type": "ListItem", 
+      "position": 3, 
+      "name": "{{post.category|capfirst}}",
+      "item": "https://orbitgadget.com/blog/{{post.category}}/"  
+    },{
+      "@type": "ListItem", 
+      "position": 4, 
+      "name": "{{post.title|title}}",
+      "item": "https://orbitgadget.com/blog/{{post.slug}}/"  
+    }]
+  }]
+</script>
+{% endblock schemaBlock %}
+
+{% load static %}
+{% block body %}
+<div class="container container-page py-4">
+  <div class="row g-4">
+    <!-- post content section -->
+    <div>
+      <!-- header -->
+      <nav style="--bs-breadcrumb-divider: '•';" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-2">
+          <li class="breadcrumb-item fw-500"><a href="/">Home</a></li>
+          <li class="breadcrumb-item fw-500"><a href="/podcasts">Podcasts</a></li>
+        </ol>
+      </nav>
+
+      <h1 class="fs-3">{{post.title}}</h1>
+
+      <div>
+  
+        <div class="spaceGrot fw-500 d-flex flex-column flex-sm-row justify-content-between">
+          <div>
+            <small class="text-warning"><img class="me-1 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}"> {{post.author}}</small>
+            <small class="ms-1 text-warning">• <span class="ms-1">{{post.timeStamp|date:"d M, Y"}}</span></small>
+          </div>
+          <div class="d-none d-sm-block">
+            <div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                  <a class="ps-2 text-warning" href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><i class="bi bi-facebook pe-2"></i></a>
+      
+                  <a class="ps-2 text-warning" href="https://twitter.com/intent/tweet?url=https://orbitgadget.com/blog/{{post.slug}}&text=" target="_blank"><i class="bi bi-twitter pe-2"></i></a>
+      
+                  <a class="ps-2 text-warning" href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp pe-2"></i></a>
+      
+                  <a class="ps-2 text-warning" href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><i class="bi bi-telegram pe-2"></i></a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+
+    <main class="mt-3">
+        <div>
+            <iframe src="{{res}}" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+
+      <!-- end of header -->
+      
+      <article class="pt-2 og-content">
+          <h3>Episode Description: </h3>
+        {{post.content|safe}}
+      </article>
+
+      <!-- anonymous likes for article -->
+
+      <div class="my-4 mb-3 pt-3 pb-2">
+        <form action="" method="post">
+          <span class="fw-500 fs-5 spaceGrot me-3">Was this Article Helpful?</span>
+          {% csrf_token %}
+          <input type="hidden" name="path" value="{{request.path}}">
+          <button class="btn btn-sm rounded-2 btn-warning me-2 py-0 fw-500" type="submit" value="on" name="liker"><i class="bi bi-hand-thumbs-up-fill fs-5"></i></button>
+          <button class="btn btn-sm rounded-2 btn-warning py-0 fw-500" type="submit" value="on" name="disliker"><i class="bi bi-hand-thumbs-down-fill fs-5"></i></button>
+        </form>
+      </div>
+
+      <!-- author section -->
+      <section class="py-4 authSec">
+        <div class="bg-nav topic-card-auth mainText py-4 px-2 row gx-4 d-flex mx-0">
+          <div class="authImg col-md-2 d-flex align-items-center justify-content-between">
+            <div>
+              <img class="rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" alt="{{post.author}}" width="100px" height="auto">
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div>
+              <div class="authTitle pb-2 d-flex justify-content-between align-items-center">
+                <h4 class="fs-5 mb-0 textSky">{{post.author}}</h4>
+                <span>
+                  <a class="authSocial ps-0" href="https://twitter.com/ajaycc17"><i class="bi bi-twitter"></i></a>
+                  <a class="authSocial" href="https://linkedin.com/in/ajaycc17"><i class="bi bi-linkedin"></i></a>
+                  <a class="authSocial" href="https://github.com/ajaycc17"><i class="bi bi-github"></i></a>
+                </span> 
+              </div>
+              <p class="authBio mb-0">A learner and a student of technlogy. He loves sharing experiences and learning with others through his projects and blog. Along with technology, he loves playing football and enjoys listening to music and podcasts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- navigation -->
+      <section class="py-4">
+        <div class="row g-2">
+          <div class="col-md-6">
+          {% if prevPost is not None %}
+            <a href="/podcasts/{{prevPost.slug}}" class="text-warning">
+              <div class="py-4 card h-100 bg-nav topic-card p-3 d-flex flex-column align-items-start">
+                <p class="fw-500 mb-2 white"><i class="bi bi-play-circle pe-2"></i>{{prevPost.title}}</p>
+                <div>
+                  <button type="button" class="btn btn-sm py-0 rounded-pill fw-500 btn-warning">← Previous</button>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+          </div>
+          <div class="col-md-6">
+          {% if nextPost is not None %}
+            <a href="/podcasts/{{nextPost.slug}}" class="text-warning">
+              <div class="py-4 card h-100 bg-nav topic-card p-3 d-flex flex-column align-items-end">
+                <p class="fw-500 mb-2 text-end white"><i class="bi bi-play-circle pe-2"></i>{{nextPost.title}}</p>
+                <div>
+                  <button type="button" class="btn btn-sm py-0 rounded-pill fw-500 btn-warning">Next →</button>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+          </div>
+        </div>
+      </section>
+
+      <!-- recommended post -->
+      <div class="mb-4">
+        <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Recommended:</h3>
+        <div class="mt-3">
+          {% for recommend in recommended %}
+          <a class="d-flex align-items-center py-3 px-3 topic-card bg-blog mb-2" href="/podcasts/{{recommend.slug}}">
+            <i class="bi bi-arrow-right-circle-fill pe-3 fs-5 text-warning"></i>
+            <div>
+              <p class="mb-0 fw-500 text-white">{{recommend.title}}</p>
+              <small class="textCol"><span class="badge bg-back">{{recommend.timeStamp|date:"M, Y"}}</span> <span class="badge bg-back">{{recommend.category|capfirst}}</span></small>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+{% endblock body %}
