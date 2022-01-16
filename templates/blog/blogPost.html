@@ -277,34 +277,6 @@
 
     <!-- sidebar -->
     <aside class="col-md-4 sideBar ps-3 mb-3">
-
-        <!-- user details -->
-        {% if request.user.is_authenticated %}
-        <div class="mb-4">
-          <div class="alert py-4 bg-nav" role="alert" style="border-radius:15px;">
-            <h4 class="text-center text-white">Hello {{request.user|capfirst}}!</h4>
-            <p class="text-center mainText my-3">
-              <span class="badge bg-success"><i class="bi bi-person-circle pe-1"></i>PROFILE</span>
-              <span class="badge bg-success"><i class="bi bi-bell-fill pe-1"></i>NOTIFICATIONS</span>
-              <span class="badge bg-success"><i class="bi bi-chat-dots-fill pe-1"></i>COMMUNITY</span>
-            </p>
-            <p class="mb-0 pt-3 text-center" style="border-top: dashed 2px var(--subtleBorder)">
-              <i class="bi bi-star-fill pe-2 text-warning"></i>Be a Supporter
-            </p>
-          </div>
-        </div>
-        {% else %}
-        <!-- ask for log in -->
-        <div class="mb-4">
-          <a href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">
-            <div class="alert py-4 bg-nav" role="alert" style="border-radius: 15px;">
-              <h4 class="text-center text-white">LOG IN</h4>
-              <p class="text-center mainText mb-0">Get access to <span class="badge bg-primary"><i class="bi bi-star-fill pe-1"></i>member</span> only articles, discussions, community and much more.</p>
-            </div>
-          </a>
-        </div>
-        {% endif %}
-
         <!-- recommended post -->
         <div class="mb-4">
           <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Recommended:</h3>
@@ -322,18 +294,6 @@
         </div>
 
       <div class="position-sticky" style="top: 4.5rem;">
-        <!-- categories -->
-        <div class="mb-4">
-          <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">All Topics:</h3>
-          <div class="mt-3">
-            <p class="mb-0" style="line-height: 1.8em;">
-              {% for topic in topics %}
-                <a href="/blog/{{topic.title}}"><span class="badge bg-danger">{{topic.title|capfirst}}</span></a>
-              {% endfor %}
-            </p>
-          </div>
-        </div>
-
         <!-- share icons -->
         <div class="mb-4">
           <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Share: </h3>

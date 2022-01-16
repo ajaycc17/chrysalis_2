@@ -69,8 +69,14 @@ def home(request):
         count.append((cat.title, BlogPost.objects.all().filter(
             category=cat, publish=True).count()))
     postCount = dict(count)
+    carouselPost1 = BlogPost.objects.all().filter(
+        publish=True).order_by('-timeStamp')[:1]
+    carouselPost2 = BlogPost.objects.all().filter(
+        publish=True).order_by('-timeStamp')[1:2]
+    carouselPost3 = BlogPost.objects.all().filter(
+        publish=True).order_by('-timeStamp')[2:3]
     allPosts = BlogPost.objects.all().filter(
-        publish=True).order_by('-timeStamp')[:6]
+        publish=True).order_by('-timeStamp')[3:9]
     Recommend = BlogPost.objects.all().filter(
         publish=False).order_by('-timeStamp')[:3]
     allPodcasts = Episodes.objects.all().filter(publish=True).order_by('-timeStamp')[:6]
@@ -78,13 +84,16 @@ def home(request):
     post = allPodcasts.first()
     add_string1 = '/embed'
     add_string2 = '?utm_source=generator'
-    result = post.anchor_link.find('spotify.com')
-    length_link = len('spotify.com')
-    add_embed = result + length_link
-    res = post.anchor_link[ : add_embed] + add_string1 + post.anchor_link[add_embed : ] + add_string2
+    try:
+        result = post.anchor_link.find('spotify.com')
+        length_link = len('spotify.com')
+        add_embed = result + length_link
+        res = post.anchor_link[ : add_embed] + add_string1 + post.anchor_link[add_embed : ] + add_string2
+    except:
+        res = ""
 
     context = {'allPosts': allPosts, 'allPodcasts': allPodcasts,
-               'postCount': postCount, 'topics': categories, 'embedPod': res, 'recommend': Recommend}
+               'postCount': postCount, 'topics': categories, 'embedPod': res, 'recommend': Recommend, 'carPost1' : carouselPost1, 'carPost2' : carouselPost2, 'carPost3' : carouselPost3} 
     return render(request, 'home/home.html', context)
 
 
