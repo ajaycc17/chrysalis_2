@@ -1,5 +1,6 @@
 :root {
     --bg-nav-real: #111827;
+    --bg-foot-real: #111827;
     --bg-nav: #cbd5e1;
     --hero-shade: #f1f5f8;
     --bg-toc: #fff3cd;
@@ -101,6 +102,7 @@ input:checked + .slider:before {
 /* end of dark mode slider */
 [data-theme="dark"] {
     --bg-nav-real: #111827;
+    --bg-foot-real: #111827;
     --bg-nav: #111827;
     --hero-shade: #1c2532;
     --bg-toc: #111827;
@@ -198,6 +200,11 @@ input:checked + .slider:before {
 .metaStrip {
     margin-bottom: 1rem;
 }
+@font-face {
+    font-family: "Lemon Milk";
+    src: url("../font/lemon_milk/LEMONMILK-Medium.otf");
+}
+
 h1,
 h2,
 h3,
@@ -205,7 +212,7 @@ h4,
 h5,
 h6 {
     /* font-family: "Space Grotesk", sans-serif; */
-    font-family: 'EB Garamond', serif;
+    font-family: 'Lemon Milk';
 }
 .signin-button {
     padding-top: 4px;
@@ -239,6 +246,11 @@ button.rounded-2.btn-warning {
 }
 .bg-nav-real {
     background-color: var(--bg-nav-real);
+    opacity: 0.7;
+    backdrop-filter: blur(40em);
+}
+.bg-foot-real {
+    background-color: var(--bg-foot-real);
 }
 .bg-blog {
     background: var(--bg-blog);

@@ -100,9 +100,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-compass pe-2"></i>Browse</a>
+
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Astronomy</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Biology</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Chemistry</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Economics</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Engineering</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Earth and Environment</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Mathematics</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Physics</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/blog/cse"><i class="bi bi-cpu-fill pe-2 dropdown-icon"></i>Archives</a></li>
+              </ul>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="/blog">
-                <i class="bi bi-gear-wide-connected pe-2"></i>Chemistry</a>
+                <i class="bi bi-gear-wide-connected pe-2"></i>Blog</a>
             </li>
             
             <li class="nav-item">
@@ -118,17 +135,6 @@
             <li class="nav-item">
               <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="/contact">
                 <i class="bi bi-chat-dots pe-2"></i>Contact</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-compass pe-2"></i>More</a>
-
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>To-Do App</a></li>
-                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Password Generator</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/blog/cse"><i class="bi bi-cpu-fill pe-2 dropdown-icon"></i>Computer Science</a></li>
-              </ul>
             </li>
           </ul>
         </div>
@@ -385,11 +391,13 @@
       </div>
     </div>
 
+    {% block socialbar %}{% endblock socialbar %}
+
     {% block body %}{% endblock body %}
 
     <!-- footer -->
-    <footer class="container-fluid bg-nav-real">
-      <section class="fUpper bg-nav-real">
+    <footer class="container-fluid bg-foot-real">
+      <section class="fUpper bg-foot-real">
         <div class="container pt-3">
           <div class="row py-2 text-light d-flex align-items-center">
             <div class="col-md-8">

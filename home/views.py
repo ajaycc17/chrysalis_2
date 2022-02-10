@@ -76,7 +76,7 @@ def home(request):
     carouselPost3 = BlogPost.objects.all().filter(
         publish=True).order_by('-timeStamp')[2:3]
     allPosts = BlogPost.objects.all().filter(
-        publish=True).order_by('-timeStamp')[3:9]
+        publish=True).order_by('-timeStamp')[0:6]
     Recommend = BlogPost.objects.all().filter(
         publish=False).order_by('-timeStamp')[:3]
     allPodcasts = Episodes.objects.all().filter(publish=True).order_by('-timeStamp')[:6]

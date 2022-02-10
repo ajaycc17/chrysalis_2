@@ -50,6 +50,7 @@ def blogPost(request, slug):
     post = BlogPost.objects.filter(slug=slug, publish=True).first()
     categories = Topic.objects.all().filter(title=slug).first()
     catpost = BlogPost.objects.all().filter(category=categories, publish=True)
+    authpost = BlogPost.objects.all().filter(author=slug, publish=True)
     # recommendation
     try:
         recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes', '-timeStamp')[:5]
@@ -120,6 +121,31 @@ def blogPost(request, slug):
         contextCat = {'allPosts': catpost.order_by(
             '-timeStamp')[(page-1)*no_of_posts:page*no_of_posts], 'prev': prev, 'nxt': nxt, 'total': postCount1, 'topics': categories}
         return render(request, "blog/category.html", contextCat)
+
+    elif authpost.count() != 0:
+        postCount1 = len(catpost)
+        no_of_posts = 12
+        page = request.GET.get('page')
+        if page is None:
+            page = 1
+        else:
+            page = int(page)
+
+        if page > 1:
+            prev = page - 1
+        else:
+            prev = None
+
+        pageCount = math.ceil(postCount1/no_of_posts)
+
+        if page < pageCount:
+            nxt = page + 1
+        else:
+            nxt = None
+
+        contextCat = {'allPosts': authpost.order_by(
+            '-timeStamp')[(page-1)*no_of_posts:page*no_of_posts], 'prev': prev, 'nxt': nxt, 'total': postCount1, 'topics': categories}
+        return render(request, "blog/author.html", contextCat)
 
     else:
         raise Http404()

@@ -84,7 +84,9 @@
   
         <div class="spaceGrot fw-500 d-flex flex-column flex-sm-row justify-content-between">
           <div>
-            <small class="text-warning"><img class="me-1 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}"> {{post.author}}</small>
+            <a href="/blog/{{post.author}}">
+              <small class="text-warning"><img class="me-1 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}"> {{post.author|title}}</small>
+            </a>
             <small class="ms-1 text-warning">• <span class="ms-1">{{post.timeStamp|date:"d M, Y"}}</span></small>
             <small class="text-warning ms-1 d-sm-none">• <span class="ms-1">{{readTime}} mins</span></small>
           </div>
@@ -314,3 +316,18 @@
 </div>
 
 {% endblock body %}
+
+{% block socialbar %}
+    <!-- social bar -->
+    <div class="position-fixed left-0 p-3 bg-foot-real" style="margin:5% auto">
+      <div class="d-flex flex-column">
+        <i class="bi bi-facebook fs-4 pb-3 text-light"></i>
+        <i class="bi bi-twitter fs-4 pb-3 text-light"></i>
+        <i class="bi bi-whatsapp fs-4 pb-3 text-light"></i>
+        <i class="bi bi-linkedin fs-4 pb-3 text-light"></i>
+        <a href="https://getpocket.com/save?url=https://orbitgadget.com/blog/deploy-django-application-with-sqlite-gunicorn-and-nginx-in-ubuntu-20-04" target="_blank" rel="noopener noreferrer" data-event-category="Social" data-event-action="Share:pocket">
+          <i class="bi bi-bookmark-plus-fill fs-4 text-light"></i>
+        </a>
+      </div>
+    </div>
+{% endblock socialbar %}
