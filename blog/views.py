@@ -51,6 +51,7 @@ def blogPost(request, slug):
     categories = Topic.objects.all().filter(title=slug).first()
     catpost = BlogPost.objects.all().filter(category=categories, publish=True)
     authpost = BlogPost.objects.all().filter(author=slug, publish=True)
+    author = slug
     # recommendation
     try:
         recommend = BlogPost.objects.all().filter(publish=True).exclude(slug=slug).order_by('-likes', '-timeStamp')[:5]
@@ -123,7 +124,7 @@ def blogPost(request, slug):
         return render(request, "blog/category.html", contextCat)
 
     elif authpost.count() != 0:
-        postCount1 = len(catpost)
+        postCount1 = len(authpost)
         no_of_posts = 12
         page = request.GET.get('page')
         if page is None:
@@ -144,7 +145,7 @@ def blogPost(request, slug):
             nxt = None
 
         contextCat = {'allPosts': authpost.order_by(
-            '-timeStamp')[(page-1)*no_of_posts:page*no_of_posts], 'prev': prev, 'nxt': nxt, 'total': postCount1, 'topics': categories}
+            '-timeStamp')[(page-1)*no_of_posts:page*no_of_posts], 'prev': prev, 'nxt': nxt, 'total': postCount1, 'topics': author}
         return render(request, "blog/author.html", contextCat)
 
     else:

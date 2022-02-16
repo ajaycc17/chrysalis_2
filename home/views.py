@@ -104,19 +104,6 @@ def aboutPage(request):
 def contribute(request):
     return render(request, 'home/contribute.html')
 
-
-def disclosure(request):
-    return render(request, 'home/disclosure.html')
-
-
-def privacyPolicy(request):
-    return render(request, 'home/privacy-policy.html')
-
-
-def siteTerms(request):
-    return render(request, 'home/site-terms.html')
-
-
 def contactPage(request):
     if request.method == 'POST':
         name = request.POST['name']

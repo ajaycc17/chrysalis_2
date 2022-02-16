@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{% block metaDesc %}{% endblock metaDesc %}" />
-    <link rel="canonical" href="https://orbitgadget.com{% block metatags %}{% endblock metatags %}" />
+    <link rel="canonical" href="https://chrysalis.students.iiserb.ac.in{% block metatags %}{% endblock metatags %}" />
 
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
@@ -17,28 +17,10 @@
     <link rel="stylesheet" href="{% static 'css/prism.css' %}">
     
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     {% block schemaBlock %}{% endblock schemaBlock %}
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGXP7EE525"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-CGXP7EE525');
-    </script>
-
-    <!-- Google Tags -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7112659924280416"
-     crossorigin="anonymous"></script>
 
     <!-- title -->
     <title>{% block title %}{% endblock title %} - Chrysalis</title>
@@ -50,7 +32,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-nav-real">
       <div class="container">
         <a class="navbar-brand me-0" href="/">
-          <img src="{% static 'images/logo.png' %}" alt="OrbitGadget" width="130" height="auto">
+          <img src="{% static 'images/logo.svg' %}" alt="OrbitGadget" width="130" height="auto">
         </a>
         <small id="place" class="ps-3 ms-3 d-flex align-item-center fw-500 foot-boldText place text-uppercase border-start border-secondary">
           {% block place %}{% endblock place %}
@@ -62,16 +44,7 @@
           </span>
         </button>
         
-        <!-- dark mode toggle -->
-        <div class="theme-switch-wrapper ps-md-3 ms-1 ms-md-3 d-flex align-item-center">
-          <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round d-flex justify-content-between align-items-center">
-              <i class="dark-icons light ps-1 bi bi-brightness-high"></i>
-              <i class="dark-icons pe-1 bi bi-moon"></i>
-            </div>
-          </label>
-        </div>
+        
 
         <!-- logged in logo for mobile devices -->
         {% if user.is_authenticated %}
@@ -101,40 +74,36 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-compass pe-2"></i>Browse</a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Browse</a>
 
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Astronomy</a></li>
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Biology</a></li>
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Chemistry</a></li>
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Economics</a></li>
-                <li><a class="dropdown-item" href="https://projects.orbitgadget.com"><i class="bi bi-check-circle-fill pe-2 dropdown-icon"></i>Engineering</a></li>
-                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Earth and Environment</a></li>
-                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Mathematics</a></li>
-                <li><a class="dropdown-item" href="/projects/password-generator"><i class="bi bi-markdown-fill pe-2 dropdown-icon"></i>Physics</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com">Astronomy</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com">Biology</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com">Chemistry</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com">Economics</a></li>
+                <li><a class="dropdown-item" href="https://projects.orbitgadget.com">Engineering</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator">Earth and Environment</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator">Mathematics</a></li>
+                <li><a class="dropdown-item" href="/projects/password-generator">Physics</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/blog/cse"><i class="bi bi-cpu-fill pe-2 dropdown-icon"></i>Archives</a></li>
+                <li><a class="dropdown-item" href="/blog/cse">Archives</a></li>
               </ul>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="/blog">
-                <i class="bi bi-gear-wide-connected pe-2"></i>Blog</a>
+              <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="/blog">Blog</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link {% block topicsactive %}{% endblock topicsactive %}" href="/blog/topics">
-                <i class="bi bi-question-circle pe-2"></i>Topics</a>
+              <a class="nav-link {% block topicsactive %}{% endblock topicsactive %}" href="/blog/topics">Topics</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about">
-                <i class="bi bi-person-lines-fill pe-2"></i>About</a>
+              <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about">About</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="/contact">
-                <i class="bi bi-chat-dots pe-2"></i>Contact</a>
+              <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="/contact">Contact</a>
             </li>
           </ul>
         </div>
@@ -148,11 +117,10 @@
             <small class="ps-2 pe-1">{{request.user|upper|truncatechars:8}}</small>
           </a>
           <ul class="dropdown-menu text-small userDrop" data-popper-placement="bottom-end" aria-labelledby="userDetails">
-            <li><a class="dropdown-item" data-bs-toggle="modal" href="#edit2Modal">
-              <i class="bi bi-gear-wide-connected pe-2 dropdown-icon"></i>Edit Profile</a>
+            <li><a class="dropdown-item" data-bs-toggle="modal" href="#edit2Modal">Edit Profile</a>
             </li>
             <li><hr class="dropdown-divider" style="color:#fff" /></li>
-            <li><a class="dropdown-item" href="/logout/?next={{request.path}}"><i class="bi bi-box-arrow-right pe-2 dropdown-icon"></i>Log out</a></li>
+            <li><a class="dropdown-item" href="/logout/?next={{request.path}}">Log out</a></li>
           </ul>
         </div>
         {% else %}
@@ -394,6 +362,17 @@
     {% block socialbar %}{% endblock socialbar %}
 
     {% block body %}{% endblock body %}
+
+    <!-- dark mode toggle -->
+    <div class="theme-switch-wrapper position-fixed bottom-0 p-1 pb-0 mb-4 align-item-center">
+      <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" />
+        <div class="slider round d-flex justify-content-between align-items-center">
+          <i class="dark-icons light ps-1 bi bi-brightness-high"></i>
+          <i class="dark-icons pe-1 bi bi-moon"></i>
+        </div>
+      </label>
+    </div>
 
     <!-- footer -->
     <footer class="container-fluid bg-foot-real">

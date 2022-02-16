@@ -1,8 +1,8 @@
 {% extends 'base.html' %} 
-{% block title %}About Me{% endblock title %} 
+{% block title %}About Us{% endblock title %} 
 {% block aboutactive %} active {% endblock aboutactive %}
-{% block place %}About{% endblock place %}
-{% block metaDesc %}Hi! I am Ajay Choudhury. I regularly add content out of my knowledge and experience on this blog. Here is a quick introduction about me and my fields of interest.{% endblock metaDesc %}
+{% block place %}About Us{% endblock place %}
+{% block metaDesc %}Chrysalis is a science magazine and more than just that. It is a medium through which you can question things, a medium through which you can speak your mind, a medium to battle the dark forces of pseudoscience, a medium to celebrate science.{% endblock metaDesc %}
 {% block metatags %}/about/{% endblock metatags %}
 {% block schemaBlock %}
 <script type="application/ld+json">
@@ -30,16 +30,16 @@
 <section class="py-3 text-center container-fluid bg-blog">
     <div class="py-lg-5 py-3 mx-2">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fs-3">About Me</h1>
+            <h1 class="fs-3">About The Magazine</h1>
             <p class="textCol fw-500 px-3">
-                <span class="mainText">Hi! I am Ajay Choudhury.</span> I regularly add content out of my knowledge and experience on this blog. Here is a quick introduction about me and my fields of interest.
+                <span class="mainText">Chrysalis is a science magazine and more than just that. It is a medium through which you can question things, a medium through which you can speak your mind, a medium to battle the dark forces of pseudoscience, a medium to celebrate science.
             </p>
             <p class="mb-0">
-                <a href="/resume" class="my-2 me-2">
-                    <button type="button" class="my-2 btn btn-sm btn-success rounded-2 fw-500 px-3"><i class="bi bi-check-circle-fill pe-1"></i> Resume</button>
+                <a href="/contribute" class="my-2 me-2">
+                    <button type="button" class="my-2 btn btn-sm btn-success rounded-2 fw-500 px-3"><i class="bi bi-check-circle-fill pe-1"></i> Contribute</button>
                 </a>
-                <a href="/projects" class="my-2">
-                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-2 fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Projects</button>
+                <a href="/blog" class="my-2">
+                    <button type="button" class="my-2 btn btn-sm btn-warning rounded-2 fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Blog</button>
                 </a>
             </p>
         </div>
@@ -51,8 +51,119 @@
 <div class="container-fluid py-5">
     <main class="container container-page">
         <p>
-            We will be sharing our whole story later on, about how we started with this site, what are our goals, how we are moving towards our goals, what we do, how we manage everything and much more about us here. So if you like our content and our way of presenting it you can follow me on <a href="https://twitter.com/ajaycc17" target="_blank" rel="noopener noreferrer">Twitter</a> and <a href="https://twitter.com/ajaycc17" target="_blank" rel="noopener noreferrer">Instagram</a>. You can bookmark OrbitGadget for more fresh contents from us.
+            Scientifically, Chrysalis is defined as a quiescent insect pupa, especially of a butterfly. It is in the chrysalis that a caterpillar prepares itself to spread its wings and emerge as a magnificent new creature.
         </p>
+        <p>
+            Chrysalis gives IISER Bhopal students a similar chance - an opportunity to prepare yourself for all the scientific writing you will have to do in the future. Writing is an indispensable part of science, and what better way to prepare yourself for it than by telling others what excites you the most.
+        </p>
+        <p>
+            However, Chrysalis is more than just that. It is a medium through which you can question things, a medium through which you can speak your mind, a medium to battle the dark forces of pseudoscience, a medium to celebrate science.
+        </p>
+        <p>
+            We are always on the lookout for new sciency-stuff to post on our website. It can be anything from articles, opinion pieces, scientific artwork and photographs, cartoons, science book reviews, some exciting sci-fi stories and the like. Do contact us if you have something to say on <a href="mailto:chrysalis@iiserb.ac.in">chrysalis@iiserb.ac.in</a>. If you can’t think of anything to write, well, contact us anyway, and maybe we could help you out with that!
+        </p>
+        <p>
+            We welcome you to explore our website and lose yourself in this world of science.
+        </p>
+        <p>
+            P.S. - Here’s a reminder that science also includes everything from economics, linguistics, psychology, engineering, sociology to the standard subjects of physics, chemistry, math, biology and earth sciences.
+        </p>
+        <p>
+            You can contact us with your queries or feedbacks through our contact form <a href="/contact">here</a>.
+        </p>
+        <h2 class="text-center my-5">Meet the Team</h2>
+        {% load static %}
+        <h3 class="text-center mb-5">Editors in Chief</h3>
+        <div class="d-flex align-items-center justify-content-center gap-3">
+            <div>
+                <img class="team-members" src="{% static 'images/team/vatsala.jpg' %}" alt="Vatsala" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Vatsala Nema</p>
+                <p class="text-center text-secondary" style="font-size:13px">vatsala19@iiserb.ac.in</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/vedant.jpeg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Vedant Bhutra</p>
+                <p class="text-center text-secondary" style="font-size:13px">vedant19@iiserb.ac.in</p>
+            </div>
+        </div>
+        <h3 class="text-center my-5">Editorial Team</h3>
+        <div class="d-flex flex-wrap align-items-center justify-content-center gap-3">
+            <div>
+                <img class="team-members" src="{% static 'images/team/anuprita.jpeg' %}" alt="Vatsala" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Anuprita Kulkarni</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/ashwin.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Ashwin Ananthanarayan</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/manav.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Manav Shah</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/mansi.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Mansi Bhati</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/rahul.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Rahul Krishnakumar</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/sameer.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Sameer Sharma</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/sampurna.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Sampurna Roychoudhury</p>
+            </div>
+        </div>
+        <h3 class="text-center my-5">Designers</h3>
+        <div class="d-flex align-items-center justify-content-center gap-3">
+            <div>
+                <img class="team-members" src="{% static 'images/team/saravanan.jpg' %}" alt="Vatsala" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Saravanan B.</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/yuvraj.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Yuvraj Sharma</p>
+            </div>
+        </div>
+        <h3 class="text-center my-5">PR Team</h3>
+        <div class="d-flex flex-wrap align-items-center justify-content-center gap-3">
+            <div>
+                <img class="team-members" src="{% static 'images/team/hadiya.jpg' %}" alt="Vatsala" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Hadiya Ashraf</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/mehar.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Mehar Khurana</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/neelabhro.jpeg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Neelabhro Mukherjee</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/uma.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Uma Madhuri Mogili</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/dhruv.jpg' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Dhruv Misra</p>
+            </div>
+        </div>
+        <h3 class="text-center my-5">Web Developer</h3>
+        <div class="d-flex align-items-center justify-content-center gap-3">
+            <div>
+                <img class="team-members" src="{% static 'images/team/ajay.png' %}" alt="Vedant" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Ajay Choudhury</p>
+                <p class="text-center text-secondary" style="font-size:13px">ajayc18@iiserb.ac.in</p>
+            </div>
+            <div>
+                <img class="team-members" src="{% static 'images/team/ayush.jpg' %}" alt="Vatsala" width="200px" height="auto">
+                <p class="text-center pt-2 mb-1">Ayush Dabra</p>
+                <p class="text-center text-secondary" style="font-size:13px">ayush19@iiserb.ac.in</p>
+            </div>
+        </div>
     </main>
 </div>
 {% endblock body %}
