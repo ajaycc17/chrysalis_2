@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{% block metaDesc %}{% endblock metaDesc %}" />
-    <link rel="canonical" href="https://chrysalis.students.iiserb.ac.in{% block metatags %}{% endblock metatags %}" />
+    <link rel="canonical" href="https://students.iiserb.ac.in/chrysalis/{% block metatags %}{% endblock metatags %}" />
 
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
@@ -32,7 +32,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-nav-real">
       <div class="container">
         <a class="navbar-brand me-0" href="/">
-          <img src="{% static 'images/logo.svg' %}" alt="OrbitGadget" width="130" height="auto">
+          <img src="{% static 'images/logo.gif' %}" alt="OrbitGadget" width="170" height="auto">
         </a>
         <small id="place" class="ps-3 ms-3 d-flex align-item-center fw-500 foot-boldText place text-uppercase border-start border-secondary">
           {% block place %}{% endblock place %}
@@ -91,19 +91,23 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="/blog">Blog</a>
+              <a class="nav-link {% block blogactive %}{% endblock blogactive %}" href="/blog/">Blog</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link {% block topicsactive %}{% endblock topicsactive %}" href="/blog/topics">Topics</a>
+              <a class="nav-link {% block topicsactive %}{% endblock topicsactive %}" href="/blog/topics/">Topics</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about">About</a>
+              <a class="nav-link {% block podactive %}{% endblock podactive %}" href="/podcasts/">Podcasts</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="/contact">Contact</a>
+              <a class="nav-link {% block aboutactive %}{% endblock aboutactive %}" href="/about/">About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="/contact/">Contact</a>
             </li>
           </ul>
         </div>
@@ -412,27 +416,27 @@
           <div class="col-6 col-md-3">
             <h3 class="fw-500 text-uppercase">Site Links</h3>
             <ul class="footerMenu">
-                <li><a href="/privacy-policy">Privacy Policy</a></li>
-                <li><a href="/disclosure">Disclosure</a></li>
-                <li><a href="/site-terms">Site Terms</a></li>
+                <li><a href="/contribute">Contribute</a></li>
+                <li><a href="/archive">Archive</a></li>
+                <li><a href="/about">Team</a></li>
             </ul>
             <h3 class="fw-500 text-uppercase">Member</h3>
             <ul class="footerMenu">
               <li><a href="#">Become a member</a></li>
-              <li><a href="/contribute">Donate</a></li>
+              <li><a href="/contribute">Read Later</a></li>
             </ul>
           </div>
           <div class="col-6 col-md-3">
             <h3 class="fw-500 text-uppercase">Resources</h3>
             <ul class="footerMenu">
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="https://projects.orbitgadget.com">To-Do App</a></li>
+                <li><a href="/podcasts">Podcasts</a></li>
+                <li><a href="/blog">Blog</a></li>
             </ul>
-            <h3 class="fw-500 text-uppercase">Mini Projects</h3>
+            <h3 class="fw-500 text-uppercase">Subjects</h3>
             <ul class="footerMenu">
-              <li><a href="/">Text Utility</a></li>
-              <li><a href="/">CSS Minifier</a></li>
-              <li><a href="/projects/password-generator">Password Generator</a></li>
+              <li><a href="/">Astronomy</a></li>
+              <li><a href="/">Biology</a></li>
+              <li><a href="/projects/password-generator">Mathematics</a></li>
             </ul>
           </div>
           <div class="col-6 col-md-3">
@@ -458,18 +462,17 @@
             </ul>
             <h3 class="fw-500 text-uppercase">Hosting</h3>
             <ul class="footerMenu">
-              <li><a href="https://m.do.co/c/1ebe4926bbbd">DigitalOcean</a></li>
+              <li><a href="https://m.do.co/c/1ebe4926bbbd">IISERB</a></li>
             </ul>
           </div>
         </div>
         <hr class="featurette-divider text-light"></hr>
-        <div class="container text-light pb-2 pt-1 d-flex align-items-center justify-content-between">
+        <div class="container text-light pb-2 pt-1 px-0">
           <div>
-            <p>&copy; 2020–{% now "Y" %} • OrbitGadget</p>
+            <p style="font-size: 0.8rem">
+              No part of this magazine may be reproduced without the express consent of Chrysalis. Any modification, distribution, transmission, republication, display or exploitation in any way of the content(s), in whole or in part, of this magazine is strictly prohibited. To republish articles elsewhere, specific permission from Chrysalis must be obtained. Send requests for permission to chrysalis@iiserb.ac.in. Copyright &copy; {% now "Y" %}, Chrysalis. All rights reserved.
+            </p>
           </div>
-          <p>
-            <a href="/privacy-policy"><i class="bi bi-question-circle-fill" style="color:#d5dbe6;"></i></a>
-          </p>
         </div>
       </div>
     </footer>

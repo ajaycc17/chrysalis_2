@@ -11,22 +11,22 @@
     "@type": "BlogPosting",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://orbitgadget.com/blog/{{post.slug}}/"
+      "@id": "https://students.iiserb.ac.in/chrysalis/blog/{{post.slug}}/"
     },
     "headline": "{{post.title|title}}",
     "description": "{{post.content|safe|truncatechars:157}}",
     "image": "{{post.thumbnail.url}}",  
     "author": {
       "@type": "Person",
-      "name": "Ajay Choudhury",
-      "url": "https://orbitgadget.com/about/"
+      "name": "{{post.author|title}}",
+      "url": "https://students.iiserb.ac.in/chrysalis/about/"
     },  
     "publisher": {
       "@type": "Organization",
       "name": "OrbitGadget",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://api.orbitgadget.com/orbitapi/staticfiles/images/logo.svg"
+        "url": "https://students.iiserb.ac.in/chrysalis/static/images/logo.svg"
       }
     },
     "datePublished": "{{post.timeStamp|date:"Y"}}-{{post.timeStamp|date:"m"}}-{{post.timeStamp|date:"d"}}",
@@ -39,22 +39,22 @@
       "@type": "ListItem", 
       "position": 1, 
       "name": "Home",
-      "item": "https://orbitgadget.com/"  
+      "item": "https://students.iiserb.ac.in/chrysalis/"  
     },{
       "@type": "ListItem", 
       "position": 2, 
       "name": "Blog",
-      "item": "https://orbitgadget.com/blog/"  
+      "item": "https://students.iiserb.ac.in/chrysalis/blog/"  
     },{
       "@type": "ListItem", 
       "position": 3, 
       "name": "{{post.category|capfirst}}",
-      "item": "https://orbitgadget.com/blog/{{post.category}}/"  
+      "item": "https://students.iiserb.ac.in/chrysalis/blog/{{post.category}}/"  
     },{
       "@type": "ListItem", 
       "position": 4, 
       "name": "{{post.title|title}}",
-      "item": "https://orbitgadget.com/blog/{{post.slug}}/"  
+      "item": "https://students.iiserb.ac.in/chrysalis/blog/{{post.slug}}/"  
     }]
   }]
 </script>
@@ -85,7 +85,7 @@
         <div class="spaceGrot fw-500 d-flex flex-column flex-sm-row justify-content-between">
           <div>
             <a href="/blog/{{post.author}}">
-              <small class="text-warning"><img class="me-1 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}"> {{post.author|title}}</small>
+              <small class="text-warning"><img class="me-1 rounded-circle" src="{% static 'images/User.png' %}" width="25px" height="auto" alt="{{post.author}}"> {{post.author|title}}</small>
             </a>
             <small class="ms-1 text-warning">• <span class="ms-1">{{post.timeStamp|date:"d M, Y"}}</span></small>
             <small class="text-warning ms-1 d-sm-none">• <span class="ms-1">{{readTime}} mins</span></small>
@@ -127,20 +127,19 @@
         <div class="bg-nav topic-card-auth mainText py-4 px-2 row gx-4 d-flex mx-0">
           <div class="authImg col-md-2 d-flex align-items-center justify-content-between">
             <div>
-              <img class="rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" alt="{{post.author}}" width="100px" height="auto">
+              <img class="rounded-circle bg-light" src="{% static 'images/chrysalis.png' %}" alt="{{post.author}}" width="100px" height="auto">
             </div>
           </div>
           <div class="col-md-10">
             <div>
               <div class="authTitle pb-2 d-flex justify-content-between align-items-center">
-                <h4 class="fs-5 mb-0 textSky">{{post.author}}</h4>
+                <h4 class="fs-5 mb-0 textSky">Chrysalis Team</h4>
                 <span>
-                  <a class="authSocial ps-0" href="https://twitter.com/ajaycc17"><i class="bi bi-twitter"></i></a>
-                  <a class="authSocial" href="https://linkedin.com/in/ajaycc17"><i class="bi bi-linkedin"></i></a>
-                  <a class="authSocial" href="https://github.com/ajaycc17"><i class="bi bi-github"></i></a>
+                  <a class="authSocial ps-0" href="https://twitter.com/chrysalisiiserb"><i class="bi bi-twitter"></i></a>
+                  <a class="authSocial" href="/contact/"><i class="bi bi-envelope-fill"></i></a>
                 </span> 
               </div>
-              <p class="authBio mb-0">A learner and a student of technlogy. He loves sharing experiences and learning with others through his projects and blog. Along with technology, he loves playing football and enjoys listening to music and podcasts.</p>
+              <p class="authBio mb-0">We are always on the lookout for new sciency-stuff to post on our blog and magazine. It can be anything from articles, opinion pieces, scientific artwork and photographs, cartoons, science book reviews, some exciting sci-fi stories and the like. Do contact us.</p>
             </div>
           </div>
         </div>
@@ -277,6 +276,8 @@
 
     <!-- sidebar -->
     <aside class="col-md-4 sideBar ps-3 mb-3">
+      
+      <div class="position-sticky" style="top: 4.5rem;">
         <!-- recommended post -->
         <div class="mb-4">
           <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Recommended:</h3>
@@ -292,22 +293,6 @@
             {% endfor %}
           </div>
         </div>
-
-      <div class="position-sticky" style="top: 4.5rem;">
-        <!-- share icons -->
-        <div class="mb-4">
-          <h3 style="border-bottom: dashed 3px var(--subtleBorder);" class="d-inline pb-1 fs-5">Share: </h3>
-          <div class="d-flex justify-content-between align-items-center flex-wrap pt-3">
-            <a class="pb-2 pe-2" href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><span class="badge bg-primary fs-6"><i class="bi bi-facebook pe-2"></i>Share</span></a>
-
-            <a class="pb-2 pe-2" href="https://twitter.com/intent/tweet?url=https://orbitgadget.com/blog/{{post.slug}}&text=" target="_blank"><span class="badge bg-info fs-6"><i class="bi bi-twitter pe-2"></i>Tweet</span></a>
-
-            <a class="pb-2 pe-2" href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><span class="badge bg-success fs-6"><i class="bi bi-whatsapp pe-2"></i>Share</span></a>
-
-            <a class="pb-2 pe-2" href="https://t.me/share/url?url=https://orbitgadget.com/blog/{{post.slug}}&text={{post.title}}" target="_blank"><span class="badge bg-secondary fs-6"><i class="bi bi-telegram pe-2"></i>Share</span></a>
-          </div>
-        </div>
-
       </div>
     </aside>
   </div>
@@ -317,15 +302,13 @@
 
 {% block socialbar %}
     <!-- social bar -->
-    <div class="position-fixed left-0 p-3 bg-foot-real" style="margin:5% auto">
+    <div class="position-fixed left-0 p-3 bg-foot-real" style="margin:5% auto;z-index:1111111;border-radius:0 10px 10px 0">
       <div class="d-flex flex-column">
-        <i class="bi bi-facebook fs-4 pb-3 text-light"></i>
-        <i class="bi bi-twitter fs-4 pb-3 text-light"></i>
-        <i class="bi bi-whatsapp fs-4 pb-3 text-light"></i>
-        <i class="bi bi-linkedin fs-4 pb-3 text-light"></i>
-        <a href="https://getpocket.com/save?url=https://orbitgadget.com/blog/deploy-django-application-with-sqlite-gunicorn-and-nginx-in-ubuntu-20-04" target="_blank" rel="noopener noreferrer" data-event-category="Social" data-event-action="Share:pocket">
-          <i class="bi bi-bookmark-plus-fill fs-4 text-light"></i>
-        </a>
+        <a class="pb-3" href="https://www.facebook.com/sharer/sharer.php?u=https://orbitgadget.com/blog/{{post.slug}}" target="_blank"><i class="bi bi-facebook fs-4 pb-3 text-light"></i></a>
+        <a class="pb-3" href="https://twitter.com/intent/tweet?url=https://orbitgadget.com/blog/{{post.slug}}&text=" target="_blank"><i class="bi bi-twitter fs-4 pb-3 text-light"></i></a>
+        <a class="pb-3" href="https://api.whatsapp.com/send?text=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp fs-4 pb-3 text-light"></i></a>
+        <a class="pb-3" href="https://www.linkedin.com/sharing/share-offsite/?url=https://orbitgadget.com/blog/{{post.slug}}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin fs-4 pb-3 text-light"></i></a>
+        <a href="https://getpocket.com/save?url=https://orbitgadget.com/blog/deploy-django-application-with-sqlite-gunicorn-and-nginx-in-ubuntu-20-04" target="_blank" rel="noopener noreferrer" data-event-category="Social" data-event-action="Share:pocket"><i class="bi bi-bookmark-plus-fill fs-4 text-light"></i></a>
       </div>
     </div>
 {% endblock socialbar %}

@@ -1,5 +1,5 @@
 :root {
-    --bg-nav-real: rgba(17,24,39,0.8);
+    --bg-nav-real: rgba(17, 24, 39, 0.8);
     --bg-foot-real: #111827;
     --bg-nav: #cbd5e1;
     --hero-shade: #f1f5f8;
@@ -29,8 +29,8 @@
     --headCol: #00caf4;
     --dark-success: #365314;
     --light-success: #3f6212;
-    --progess-orange: #ff5000;
-    --progress-yellow: #fff500;
+    --progess-orange: #5083ce;
+    --progress-yellow: #78e47b;
     --success-shadow: #4d7c0f;
     --warning-shadow: #ff8800;
     --code-back: #e2e8f0;
@@ -53,7 +53,7 @@
 }
 /* end of new */
 /* dark mode slider */
-.theme-switch-wrapper{
+.theme-switch-wrapper {
     z-index: 10000;
     background-color: var(--bg-nav);
     border-radius: 0 15px 15px 0;
@@ -108,7 +108,7 @@ input:checked + .slider:before {
 }
 /* end of dark mode slider */
 [data-theme="dark"] {
-    --bg-nav-real: rgba(17,24,39,0.8);
+    --bg-nav-real: rgba(17, 24, 39, 0.8);
     --bg-foot-real: #111827;
     --bg-nav: #111827;
     --hero-shade: #1c2532;
@@ -211,7 +211,7 @@ input:checked + .slider:before {
     font-family: "Lemon Milk";
     src: url("../font/lemon_milk/LEMONMILK-Medium.otf");
 }
-.team-members{
+.team-members {
     border-radius: 50%;
     padding: 4px;
     border: solid 1px var(--subtleBorder);
@@ -223,8 +223,7 @@ h3,
 h4,
 h5,
 h6 {
-    /* font-family: 'Domine', serif; */
-    font-family: 'Lemon Milk';
+    font-family: "Lemon Milk";
 }
 .signin-button {
     padding-top: 4px;
@@ -235,8 +234,10 @@ h6 {
 .signin-button:hover {
     color: var(--blackText);
 }
-.navbar{
+.navbar {
     backdrop-filter: blur(4px);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
 .navbar-toggler {
     border: none;
@@ -322,8 +323,8 @@ button.rounded-2.btn-warning {
 .boldText {
     color: var(--boldText);
 }
-.text-nav-real{
-    color: #0A66C2;
+.text-nav-real {
+    color: #0a66c2;
 }
 .foot-boldText {
     color: var(--foot-boldText);
@@ -353,7 +354,7 @@ button.rounded-2.btn-warning {
 body {
     background-color: var(--bg-back);
     color: var(--mainText);
-    padding-top: 3.5rem;
+    padding-top: 3.37rem;
 }
 .commentParent {
     border-left: solid 3px var(--bg-card);
@@ -384,7 +385,7 @@ body {
     color: var(--bs-yellow) !important;
 }
 .navbar-nav > li > .dropdown-menu {
-    background-color: rgb(17,24,39);
+    background-color: rgb(17, 24, 39);
     color: var(--boldText);
 }
 .dropdown-item {
@@ -560,7 +561,7 @@ img {
     margin: 0;
     inset: 10px auto auto 0;
     transform: translate3d(-110px, 6px, 0);
-    background: rgb(17,24,39);
+    background: rgb(17, 24, 39);
 }
 ::-webkit-scrollbar {
     width: 10px;

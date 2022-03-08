@@ -100,7 +100,6 @@ def home(request):
 def aboutPage(request):
     return render(request, 'home/about.html')
 
-
 def contribute(request):
     return render(request, 'home/contribute.html')
 

@@ -33,7 +33,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6LeleRAaAAAAAEHqQzug3vmGBNg1L605fHS8XYyt'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'orbitgadget@gmail.com'
+EMAIL_HOST_USER = 'chrysalis@iiserb.ac.in'
 
 # with open('E:/Django Dev/email_pass.txt') as h:
 #     EMAIL_HOST_PASSWORD = h.read().strip()

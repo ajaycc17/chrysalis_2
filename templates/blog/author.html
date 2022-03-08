@@ -13,17 +13,17 @@
         "@type": "ListItem", 
         "position": 1, 
         "name": "Home",
-        "item": "https://orbitgadget.com/"  
+        "item": "https://students.iiserb.ac.in/chrysalis/"  
     },{
         "@type": "ListItem", 
         "position": 2, 
         "name": "Blog",
-        "item": "https://orbitgadget.com/blog/"  
+        "item": "https://students.iiserb.ac.in/chrysalis/blog/"  
     },{
         "@type": "ListItem", 
         "position": 3, 
         "name": "{{topics.title|capfirst}}",
-        "item": "https://orbitgadget.com/blog/{{topics}}/"  
+        "item": "https://students.iiserb.ac.in/chrysalis/blog/{{topics.title}}/"  
     }]
     }
 </script>
@@ -37,10 +37,7 @@
     <section class="py-3 text-center container-fluid bg-blog">
         <div class="py-lg-5 py-3 mx-2">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fs-3">Articles by: {{topics.title|capfirst}}</h1>
-                <p class="textCol fw-500 px-3">
-                    {{topics.description}}
-                </p>
+                <h1 class="fs-3">Articles by: {{topics.title}}</h1>
                 <p class="mb-0">
                     <a href="/blog" class="my-2 me-2">
                         <button type="button" class="my-2 btn btn-sm btn-success rounded-2 fw-500 px-3"><i class="bi bi-ui-checks pe-1"></i> Back to Blog</button>
@@ -87,7 +84,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="/about">
                                 <div class="btn-group d-flex align-items-center">
-                                    <img class="me-2 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}">
+                                    <img class="me-2 rounded-circle" src="{% static 'images/User.png' %}" width="25px" height="auto" alt="{{post.author}}">
                                     <small class="boldText fw-500">{{post.author}}</small>
                                 </div>
                             </a>

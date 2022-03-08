@@ -2,7 +2,7 @@
 {% block title %}Blog{% endblock title %} 
 {% block blogactive %} active {% endblock blogactive %}
 {% block place %}Blog{% endblock place %}
-{% block metaDesc %}A tech and study-oriented blog for geeks. We love being surrounded by gadgets, algorithms, codes and ideas.We cover tech, tutorials, guides, tech hacks and tips &amp; tricks in this blog.{% endblock metaDesc %}
+{% block metaDesc %}Chrysalis gives IISER Bhopal students an opportunity to prepare themselves for all the scientific writing they will have to do in the future. Writing is an indispensable part of science, and what better way to prepare yourself for it than by telling others what excites you the most.{% endblock metaDesc %}
 {% block metatags %}/blog/{% endblock metatags %}
 {% block schemaBlock %}
 <script type="application/ld+json">
@@ -13,12 +13,12 @@
         "@type": "ListItem", 
         "position": 1, 
         "name": "Home",
-        "item": "https://orbitgadget.com/"  
+        "item": "https://students.iiserb.ac.in/chrysalis/"  
     },{
         "@type": "ListItem", 
         "position": 2, 
         "name": "Blog",
-        "item": "https://orbitgadget.com/blog/"  
+        "item": "https://students.iiserb.ac.in/chrysalis/blog/"  
     }]
     }
 </script>
@@ -33,9 +33,9 @@
     <section class="py-3 text-center container-fluid bg-blog">
         <div class="py-lg-5 py-3 mx-2">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fs-3">The Tech Blog</h1>
+                <h1 class="fs-3">The Chrysalis Blog</h1>
                 <p class="textCol fw-500 px-3">
-                    A tech and study-oriented blog for geeks. We love being surrounded by gadgets, algorithms, codes and ideas.We cover tech, tutorials, guides, tech hacks and tips & tricks in this blog.
+                    Chrysalis gives IISER Bhopal students an opportunity to prepare themselves for all the scientific writing they will have to do in the future. Writing is an indispensable part of science, and what better way to prepare yourself for it than by telling others what excites you the most.
                 </p>
                 <div class="d-block mx-3">
                     <form method="get" action="/search/" class="d-flex mb-3">
@@ -88,7 +88,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="/about">
                                 <div class="btn-group d-flex align-items-center">
-                                    <img class="me-2 rounded-circle" src="{% static 'images/Ajay Choudhury.jpg' %}" width="25px" height="auto" alt="{{post.author}}">
+                                    <img class="me-2 rounded-circle" src="{% static 'images/User.png' %}" width="25px" height="auto" alt="{{post.author}}">
                                     <small class="boldText fw-500">{{post.author}}</small>
                                 </div>
                             </a>
