@@ -15,14 +15,17 @@ ALLOWED_HOSTS = ['chrysalisiiserb.herokuapp.com', 'localhost', '127.0.0.1']
 SITE_ID = 2
 
 # Production database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
-# Static and media files
+# ie if Heroku server
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
 
 # Static and media URL
 STATIC_URL = '/static/'
