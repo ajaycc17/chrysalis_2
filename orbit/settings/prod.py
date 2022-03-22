@@ -14,14 +14,6 @@ ALLOWED_HOSTS = ['chrysalisiiserb.herokuapp.com', 'localhost', '127.0.0.1']
 # Site ID
 SITE_ID = 2
 
-# Production database
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 # ie if Heroku server
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
@@ -34,7 +26,7 @@ MEDIA_URL =  '/media/'
 
 # Production recaptcha
 # with open('/home/ajay/recaptcha_key.txt') as g:
-#     GOOGLE_RECAPTCHA_SECRET_KEY = g.read().strip()
+GOOGLE_RECAPTCHA_SECRET_KEY = "6LdTlgEfAAAAAO4Df_xQrqQG013LHxHhYEPetLug"
 
 # Production SMTP Configuration
 EMAIL_HOST = 'smtp.gmail.com'
