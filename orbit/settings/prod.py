@@ -4,7 +4,7 @@ import os
 # Secret key
 # with open('/home/ajay/secret_key.txt') as f:
 #     SECRET_KEY = f.read().strip()
-SECRET_KEY = 'django-insecure-2@je&3s47ffy8ph&k*8l=%ep*8mn0rj0_-b)e9r4ij=j%hqee-'
+# SECRET_KEY = 'django-insecure-2@je&3s47ffy8ph&k*8l=%ep*8mn0rj0_-b)e9r4ij=j%hqee-'
 
 # Debug in production
 DEBUG = True
