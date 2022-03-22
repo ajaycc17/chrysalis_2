@@ -51,3 +51,6 @@ EMAIL_HOST_USER = 'orbitgadget@gmail.com'
 # SECURE_HSTS_SECONDS = 31536000
 # SECURE_HSTS_PRELOAD = True
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+import django_heroku
+django_heroku.settings(locals())
