@@ -7,8 +7,8 @@ import os
 SECRET_KEY = 'django-insecure-2@je&3s47ffy8ph&k*8l=%ep*8mn0rj0_-b)e9r4ij=j%hqee-'
 
 # Debug in production
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 ALLOWED_HOSTS = ['chrysalisiiserb.herokuapp.com', 'localhost']
 # ALLOWED_HOSTS = ['67.207.82.73', 'localhost', 'orbitgadget.com', 'www.orbitgadget.com']
 
