@@ -90,9 +90,9 @@
         <div>
             <div class="album py-4">
                 <div class="mb-4 pb-2 d-flex align-items-center justify-content-between">
-                    <h3 class="mb-0"><i class="bi bi-grid-fill pe-2"></i>Browse Topics</h3>
+                    <h3 class="mb-0"><i class="bi bi-arrow-right-circle-fill pe-2"></i>Browse Topics</h3>
                     <a href="/blog/topics">
-                        <button type="button" class="btn btn-sm btn-outline-success rounded-2 fw-500 me-2">View All</button>
+                        <button type="button" class="btn btn-sm btn-success rounded-2 fw-500 me-2">View All</button>
                     </a>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
@@ -124,17 +124,17 @@
         <!-- posts -->
         <div class="album py-4">
             <div class="mb-4 pb-2 d-flex align-items-center justify-content-between">
-                <h3 class="mb-0"><i class="bi bi-book-half pe-2"></i>Recent Articles</h3>
+                <h3 class="mb-0"><i class="bi bi-arrow-right-circle-fill pe-2"></i>Recent Articles</h3>
                 <a href="/blog">
-                    <button type="button" class="btn btn-sm btn-outline-success rounded-2 fw-500 me-2">View All</button>
+                    <button type="button" class="btn btn-sm btn-success rounded-2 fw-500 me-2">View All</button>
                 </a>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
                 {% for post in allPosts %}
                 <article class="col">
-                    <div class="card h-100 bg-blog" style="border-radius: 15px;">
+                    <div class="card h-100 bg-blog">
                         <a href="/blog/{{post.slug}}">
-                            <img src="{{post.thumbnail.url}}" alt="{{post.title}}" style="border-radius: 15px 15px 0 0;">
+                            <img src="{{post.thumbnail.url}}" alt="{{post.title}}">
                         </a>
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
@@ -174,13 +174,13 @@
                 <div class="mb-4 pb-2 d-flex align-items-center justify-content-between">
                     <h3 class="mb-0"><i class="bi bi-play-circle-fill pe-2"></i>Listen to Podcasts</h3>
                     <a href="/blog/topics">
-                        <button type="button" class="btn btn-sm btn-outline-success rounded-2 fw-500 me-2">View All</button>
+                        <button type="button" class="btn btn-sm btn-success rounded-2 fw-500 me-2">View All</button>
                     </a>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
                     {% for pod in allPodcasts %}
                     <article class="col">
-                      <div class="card h-100 topic-card" style="background-color: #26448d">
+                      <div class="card h-100 topic-card" style="background-color: #195aa2">
                           <div class="card-body d-flex flex-column justify-content-between">
                               <div>
                                   <div class="d-flex mb-2 align-items-center">
@@ -211,14 +211,14 @@
   
           <!-- user details -->
           <div class="mb-4">
-            <div class="alert py-4 bg-blog" role="alert" style="border-radius:15px;">
+            <div class="alert pt-4 pb-3 bg-blog" role="alert" style="border-radius:15px;">
               <h4 class="text-center text-white fs-5">FIND US ON</h4>
-              <p class="text-center mainText mt-3 mb-0">
-                <i class="bi bi-instagram fs-3 text-danger"></i>
-                <i class="bi bi-facebook fs-3 ps-4 text-primary"></i>
-                <i class="bi bi-twitter fs-3 ps-4 text-info"></i>
-                <i class="bi bi-youtube fs-3 ps-4 text-danger"></i>
-                <i class="bi bi-linkedin fs-3 ps-4 text-nav-real"></i>
+              <p class="text-center mainText mt-3 mb-0 d-flex justify-content-between px-4" style="background-color: var(--bg-blog2);border-radius: 15px;padding-top: 6px;padding-bottom: 5px">
+                <i class="bi bi-instagram fs-4 text-white"></i>
+                <i class="bi bi-facebook fs-4 text-white"></i>
+                <i class="bi bi-twitter fs-4 text-white"></i>
+                <i class="bi bi-youtube fs-4 text-white"></i>
+                <i class="bi bi-linkedin fs-4 text-white"></i>
               </p>
             </div>
           </div>
@@ -233,8 +233,9 @@
 
           <div class="mb-4">
             <h3 class="d-inline pb-1 fs-5">LATEST TWEETS:</h3>
-            <div class="mt-3">
-              <a class="twitter-timeline" data-height="420" href="https://twitter.com/chrysalisiiserb?ref_src=twsrc%5Etfw">Tweets by chrysalisiiserb</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <div class="mt-3 border border-2 p-2" style="border-radius: 15px;">
+              <a class="twitter-timeline bg-warning" data-height="440" data-chrome="noscrollbar noheader nofooter noborders" data-aria-polite="assertive" href="https://twitter.com/chrysalisiiserb?ref_src=twsrc%5Etfw">Tweets by chrysalisiiserb</a> 
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
           </div>
   

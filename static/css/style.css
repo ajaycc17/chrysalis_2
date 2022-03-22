@@ -7,6 +7,7 @@
     --bg-back: #ffffff;
     --bg-card: #cbd5e1;
     --bg-blog: #e2e8f0;
+    --bg-blog2: #cbd5e1;
     --mainText: #000;
     --textCol: #374151;
     --boldText: #374151;
@@ -126,7 +127,7 @@ input:checked + .slider:before {
     --subtleBorder: #6b7280;
     --bs-yellow: #ffd800;
     --bg-card: #4b5563;
-    /* --bg-blog: #374151; */
+    --bg-blog2: #374151;
     --bg-blog: #3a3b40;
     --bg-lime: #84cc16;
     --bg-darkblue: #1f364d;
@@ -166,10 +167,12 @@ input:checked + .slider:before {
     color: var(--subtleBorder) !important;
 } */
 .spaceGrot {
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; */
+    font-family: "Work Sans", sans-serif;
 }
 .spaceGrot p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; */
+    font-family: "Work Sans", sans-serif;
     color: var(--textCol);
     font-size: 1.1rem;
 }
@@ -223,7 +226,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lemon Milk";
+    /* font-family: "Lemon Milk"; */
+    font-family: "Work Sans", sans-serif;
 }
 .signin-button {
     padding-top: 4px;
@@ -354,7 +358,7 @@ button.rounded-2.btn-warning {
 body {
     background-color: var(--bg-back);
     color: var(--mainText);
-    padding-top: 3.37rem;
+    padding-top: 3.3rem;
 }
 .commentParent {
     border-left: solid 3px var(--bg-card);
@@ -414,7 +418,8 @@ footer p {
     color: var(--nav-white);
 }
 footer h3 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; */
+    font-family: "Work Sans", sans-serif;
     font-size: 0.9rem;
     color: var(--nav-white);
 }
@@ -422,15 +427,12 @@ footer span.text-warning {
     color: #ffc107 !important;
 }
 .fUpper h3 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; */
+    font-family: "Work Sans", sans-serif;
 }
 .contIcon1,
 .contIcon2 {
     color: var(--nav-white);
-}
-.contIcon1:hover,
-.contIcon2:hover {
-    color: var(--text-sky);
 }
 #scTop {
     display: none;
@@ -443,7 +445,8 @@ a,
 blockquote,
 li,
 p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; */
+    font-family: "Work Sans", sans-serif;
 }
 h1 {
     font-weight: 600;
@@ -472,6 +475,9 @@ h5 {
     }
     h3 {
         font-size: 18px;
+    }
+    .share-bar {
+        display: none;
     }
 }
 .card h3,
@@ -513,7 +519,7 @@ a {
 a:hover {
     color: var(--link);
 }
-.container-page.content a,
+.container-page a,
 .og-content a {
     font-weight: 500;
     color: var(--link);
@@ -729,7 +735,8 @@ textarea:-webkit-autofill:hover {
     border: 7px solid var(--bg-nav);
     font-size: 2.2rem;
     /* font-family: 'Space Grotesk', cursive; */
-    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; */
+    font-family: "Work Sans", sans-serif;
     line-height: 2;
     font-weight: 900;
     color: var(--bs-yellow);

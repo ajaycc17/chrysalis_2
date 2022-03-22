@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 from django.contrib.messages import constants as messages
 
 # BASE_DIR / 'subdir'
@@ -86,6 +87,9 @@ USE_TZ = True
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+# managing media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
