@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from cloudinary.models import CloudinaryField
 
 
 class Topic(models.Model):
     sno = models.AutoField(primary_key=True)
     title = models.CharField(max_length=30)
     description = models.TextField()
-    image = models.ImageField(upload_to='category')
+    image = CloudinaryField('image')
+    # image = models.ImageField(upload_to='category')
 
     def __str__(self):
         return self.title
@@ -18,7 +20,8 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     author = models.CharField(max_length=100, default='Ajay Choudhury')
-    thumbnail = models.ImageField(upload_to='blog')
+    thumbnail = CloudinaryField('image')
+    # thumbnail = models.ImageField(upload_to='blog')
     category = models.ForeignKey(
         Topic, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=150, default="")

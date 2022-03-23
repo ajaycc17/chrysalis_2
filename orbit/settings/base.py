@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.sites',
     'widget_tweaks',
+    'cloudinary'
 ]
 
 # Middleware

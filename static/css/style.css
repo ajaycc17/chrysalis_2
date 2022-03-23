@@ -519,7 +519,7 @@ a {
 a:hover {
     color: var(--link);
 }
-.container-page a,
+.container-page.content a,
 .og-content a {
     font-weight: 500;
     color: var(--link);
